@@ -7,7 +7,7 @@
 {% block js %}{% endblock %}
 
 {% block content %}
-    <form action="" method="post">
+    <form action="" method="post" novalidate>
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="ثبت نام">
