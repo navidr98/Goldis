@@ -8,9 +8,28 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class UserRegisterView(View):
 
+class UserLoginView(View):
     form_class = UserRegistrationForm
     tamp_name = 'accounts/register.html'
 
+    form_class = UserLoginForm
+    temp_name = 'accounts/login.html'
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.temp_name, {'form':form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(request, username=cd['username'], password=cd['password'])
+            if user is not None:
+                login(request, user)
+                messages.success(request,'با موفقیت وارد شدید', 'success')
+                return redirect('home:home')
+            messages.error(request, 'نام کابری یا رمز ورود اشتباه است', 'warning')
+        return render(request, self.temp_name, {'form': form})
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect('home:home')
