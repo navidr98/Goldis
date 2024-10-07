@@ -2,10 +2,18 @@ from django import forms
 from django.core.exceptions import ValidationError
 
 class UserRegistrationForm(forms.Form):
-    username = forms.CharField(label='نام کابری', widget=forms.TextInput(attrs={'class':''}))
-    phone_number = forms.CharField(label='شماره تلفن', widget=forms.TextInput(attrs={'class':''}))
-    password = forms.CharField(label='رمز عبور', widget=forms.PasswordInput(attrs={'placeholder':'رمز عبور', 'class':''}))
-    confirm_password = forms.CharField(label='تکرار رمز عبور', widget=forms.PasswordInput(attrs={'placeholder':'تکرار رمز عبور', 'class':''}))
+    username = forms.CharField(min_length=5, label='', error_messages = {
+                 'required':"لطفا نام کاربری خود را وارد کنید"
+                 }, widget=forms.TextInput(attrs={'placeholder':'نام کاربری', 'class':''}))
+    phone_number = forms.CharField(min_length=11, max_length=11, error_messages = {
+                 'required':"لطفا شماره تلفن خود را وارد کنید"
+                 }, label='', widget=forms.TextInput(attrs={'placeholder':'شماره تلفن', 'class':''}))
+    password = forms.CharField(min_length=8, label='', error_messages = {
+                 'required':"لطفا رمز عبور خود را وارد کنید"
+                 }, widget=forms.PasswordInput(attrs={'placeholder':'رمز عبور', 'class':''}))
+    confirm_password = forms.CharField(min_length=8, label='', error_messages = {
+                 'required':"لطفا رمز عبود خود را مجدد وارد کنید"
+                 }, widget=forms.PasswordInput(attrs={'placeholder':'تکرار رمز عبور', 'class':''}))
 
     def clean(self):
         cd = super().clean()
@@ -13,3 +21,6 @@ class UserRegistrationForm(forms.Form):
         p2 = cd.get('confirm_password')
         if p1 and p2 and p1 != p2:
             raise ValidationError('رمز عبور همخوانی ندارد')
+
+
+
