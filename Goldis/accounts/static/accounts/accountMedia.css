@@ -1,0 +1,47 @@
+:root{
+    --dark-blue-color: rgb(27, 54, 108);
+}
+@media(max-width: 1000px) {
+    .left-item{
+        -webkit-border-radius: 0 0 11px 11px;
+        -moz-border-radius: 0 0 11px 11px;
+        -ms-border-radius: 0 0 11px 11px;
+        -o-border-radius: 0 0 11px 11px;
+        border-radius: 0 0 11px 11px;
+}
+    .right-item{
+        display:none;
+    }
+    .top-item{
+        display: flex;
+        justify-content: center;
+        width: 28rem;
+        background-color: var(--orange-color);
+        -webkit-border-radius: 11px 11px 0 0;
+        -moz-border-radius: 11px 11px 0 0;
+        -ms-border-radius: 11px 11px 0 0;
+        -o-border-radius: 11px 11px 0 0;
+        border-radius: 11px 11px 0 0;
+}
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 28.5rem;
+        border: 5px solid var(--dark-blue-color);
+        -webkit-border-radius: 14px;
+        -moz-border-radius: 14px;
+        -ms-border-radius: 14px;
+        -o-border-radius: 14px;
+        border-radius: 14px;
+}
+    form{
+        width: 28rem;
+        height: 15rem;
+        padding-inline: 10px;
+}
+    .register-form{
+        height: 20rem;
+    }
+
+}
