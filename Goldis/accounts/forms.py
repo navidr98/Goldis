@@ -31,3 +31,11 @@ class UserRegistrationForm(forms.Form):
 
 
 
+
+class UserLoginForm(forms.Form):
+    username = forms.CharField(min_length=5, label='', error_messages = {
+                 'required':"لطفا نام کاربری خود را وارد کنید"
+                 }, widget=forms.TextInput(attrs={'placeholder':'نام کاربری', 'autofocus': 'true', 'class':'inputs'}))
+    password = forms.CharField(min_length=8, label='', error_messages = {
+                 'required':"لطفا رمز عبور خود را وارد کنید"
+                 }, widget=forms.PasswordInput(attrs={'placeholder':'رمز عبور', 'class':'inputs'}))
