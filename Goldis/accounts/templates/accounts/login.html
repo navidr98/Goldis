@@ -4,35 +4,44 @@
 
 {% load static %}
 {% block css %}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'accounts/login.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/styles/accountStyle.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/styles/accountMedia.css' %}">
+{% endblock %}
+
+{% block favicon %}
+    <link rel="image" href="{% static 'accounts/img/mono.jpg' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+<div class="container">
+
+    <div class="right-item">
+        <img src="{% static 'accounts/img/persian_goldis.jpg' %}"0 alt="persian-logo">
+    </div>
+    <div class="top-item">
+        <img src="{% static 'accounts/img/mono.jpg' %}" alt="monogram">
+    </div>
+    
+    <div class="left-item">
+        <h2 class="box-title">ورود به حساب کاربری</h2>
+        <form action="" method="post" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input id="btn" type="submit" value="ورود" style="line-height: 1rem;"><br>
+        </form>
+        <div>
+            <a href="#">ساخت حساب کاربری</a>
+            <a class="return-home" href="#">برگشت به صفحه اصلی</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block js %}
+    <script src="{% static 'accounts/js/account.js' %}"></script>
 {% endblock %}
 
-{% block content %}
-        <div class="container">
-
-            <div class="right-item">
-                <img src="./images/fa_brandtitel_color2_jpg.jpg" width="500" height="500" alt="persian-logo">
-            </div>
-            <div class="top-item">
-                <img src="./images/monogram_color 2_jpg_prev_ui.png" width="260" height="180" alt="monogram">
-            </div>
-
-            <div class="left-item">
-                <h2 class="box-title">ورود به حساب کاربری</h2>
-                <form action="" method="post" novalidate>
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <input type="submit" value="ورود"><br>
-                </form>
-
-                <div class="forget-create-div">
-                    <a href="#">ساخت حساب کاربری</a>
-                </div>
-                <a class="return-home" href="#">برگشت به صفحه اصلی</a>
-            </div>
-        </div>
+{% block js %}
 {% endblock %}

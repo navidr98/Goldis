@@ -12,4 +12,28 @@
 
 {% block content %}
 
+<div class="container">
+    <div class="right-item">
+        <img src="{% static 'accounts/img/persian_goldis.jpg' %}" alt="persian-logo">
+    </div>
+    <div class="top-item">
+        <img src="{% static 'accounts/img/mono.jpg' %}" width="260" height="180" alt="monogram">
+    </div>
+    <div class="left-item">
+        <h2 class="box-title-register">ساخت حساب کاربری</h2>
+        <form action="" method="post" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input id="btn" type="submit" value="ثبت نام"><br>
+        </form>
+        <div>
+            <a href="">حساب دارید ؟</a>
+            <a class="return-home" href="{% url 'home:home' %}">برگشت به صفحه اصلی</a>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
+
+{% block js %}<script src="{% static 'accounts/js/account.js' %}"></script>{% endblock %}

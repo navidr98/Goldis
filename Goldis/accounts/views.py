@@ -5,11 +5,21 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 
+def login_sms(request):
+
+
+    return render(request , 'accounts/login.html')
 
 class UserLoginView(View):
 
     form_class = UserLoginForm
     temp_name = 'accounts/login.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('home:home')
+        else:
+            return super().dispatch(request, *args, **kwargs)
 
     def get(self, request):
         form = self.form_class()
