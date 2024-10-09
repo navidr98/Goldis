@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}اخطار 403{% endblock %}
+
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/Error403.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="right-item">
+            <img src="{% static 'home/img/fa_brandtitel_color2_jpg.jpg' %}" width="500" height="500" alt="403-error">
+        </div>
+        <div class="left-item">
+            <h1 class="box-title">403</h1>
+            <h2>دسترسی به این صفحه مجاز نیست.</h2>
+            <p>شما اجازه دسترسی به این منبع را ندارید. لطفاً با مدیریت تماس بگیرید.</p>
+            <a href="{% url 'home:home' %}" class="return-home">بازگشت به صفحه اصلی</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}اخطار 400{% endblock %}
+
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/Error400.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="right-item">
+            <img src="{% static 'home/img/fa_brandtitel_color2_jpg.jpg' %}" width="500" height="500" alt="400-error">
+        </div>
+        <div class="left-item">
+            <h1 class="box-title">400</h1>
+            <h2>درخواست شما معتبر نیست.</h2>
+            <p>لطفاً آدرس صفحه را بررسی کنید یا درخواست خود را دوباره ارسال کنید.</p>
+            <a href="{% url 'home:home' %}" class="return-home">بازگشت به صفحه اصلی</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}{% endblock %}

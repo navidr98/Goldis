@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}اخطار 404{% endblock %}
+
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/Error404.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="right-item">
+            <img src="{% static 'home/img/fa_brandtitel_color2_jpg.jpg' %}" width="500" height="500" alt="404-error">
+        </div>
+        <div class="left-item">
+            <h1 class="box-title">404</h1>
+            <h2>صفحه‌ای که به دنبال آن هستید پیدا نشد.</h2>
+            <p>ممکن است آدرس را اشتباه وارد کرده باشید یا صفحه حذف شده باشد.</p>
+            <a href="{% url 'home:home' %}" class="return-home">بازگشت به صفحه اصلی</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}{% endblock %}

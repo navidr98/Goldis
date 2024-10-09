@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}اخطار 500{% endblock %}
+
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home/Error500.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="right-item">
+            <img src="{% static 'home/img/fa_brandtitel_color2_jpg.jpg' %}" width="500" height="500" alt="500-error">
+        </div>
+        <div class="left-item">
+            <h1 class="box-title">500</h1>
+            <h2>خطای داخلی سرور رخ داده است.</h2>
+            <p>درخواست شما به دلیل مشکلی در سرور پردازش نشد. لطفاً مجدداً تلاش کنید.</p>
+            <a href="{% url 'home:home' %}" class="return-home">بازگشت به صفحه اصلی</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}{% endblock %}
