@@ -1,14 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from .forms import UserLoginForm
-from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-
-def login_sms(request):
-
-
-    return render(request , 'accounts/login.html')
 
 class UserLoginView(View):
 

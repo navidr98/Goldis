@@ -4,8 +4,11 @@ from django.core.exceptions import ValidationError
 
 class UserLoginForm(forms.Form):
     username = forms.CharField(min_length=5, label='', error_messages = {
-                 'required':"لطفا نام کاربری خود را وارد کنید"
+                 'required':"لطفا نام کاربری خود را وارد کنید",
+        'min_length': "نام کاربری باید حداقل ۵ حرف باشد"
                  }, widget=forms.TextInput(attrs={'placeholder':'نام کاربری', 'autofocus': 'true', 'class':'inputs'}))
     password = forms.CharField(min_length=8, label='', error_messages = {
-                 'required':"لطفا رمز عبور خود را وارد کنید"
+                 'required':"لطفا رمز عبور خود را وارد کنید",
+        'min_length': "رمز عبور باید حداقل ۸ حرف باشد",
                  }, widget=forms.PasswordInput(attrs={'placeholder':'رمز عبور', 'class':'inputs'}))
+
