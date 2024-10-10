@@ -29,9 +29,6 @@ class UserRegistrationForm(forms.Form):
 
 
 
-
-
-
 class UserLoginForm(forms.Form):
     username = forms.CharField(min_length=5, label='', error_messages = {
                  'required':"لطفا نام کاربری خود را وارد کنید",

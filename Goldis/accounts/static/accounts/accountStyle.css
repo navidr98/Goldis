@@ -19,7 +19,7 @@
 .container{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 55rem;
+    width: 58rem;
     margin: 10rem auto;
     border: 5px solid var(--dark-blue-color);
     -webkit-border-radius: 15px;
@@ -45,7 +45,7 @@
     display: none;
 }
 .right-item{
-    background-color: var(--orange-color);
+    background-color: rgb(09, 25, 58);
     -webkit-border-radius: 0 11px 11px 0;
     -moz-border-radius: 0 11px 11px 0;
     -ms-border-radius: 0 11px 11px 0;
