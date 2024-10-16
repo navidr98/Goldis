@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from .forms import UserLoginForm
 from .forms import UserRegistrationForm
+
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
@@ -33,8 +34,6 @@ class UserRegisterView(View):
         return render(request, self.tamp_name, {'form': form})
 
 class UserLoginView(View):
-
-
     form_class = UserLoginForm
     temp_name = 'accounts/login.html'
 
@@ -59,8 +58,6 @@ class UserLoginView(View):
                 return redirect('home:home')
             messages.error(request, 'نام کابری یا رمز ورود اشتباه است', 'warning')
         return render(request, self.temp_name, {'form': form})
-
-
 class UserLogoutView(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
 
