@@ -13,10 +13,6 @@ class UserLoginForm(forms.Form):
 from django.core.exceptions import ValidationError
 
 class UserRegistrationForm(forms.Form):
-    username = forms.CharField(min_length=5, label='', error_messages = {
-                 'required':"لطفا نام کاربری خود را وارد کنید",
-                 'min_length': "نام کاربری باید حداقل ۵ حرف باشد",
-                 }, widget=forms.TextInput(attrs={'placeholder':'نام کاربری', 'class':''}))
     phone_number = forms.CharField(min_length=11, max_length=11, error_messages = {
                 'required':"لطفا شماره تلفن خود را وارد کنید",
                 'min_length': "شماره تلفن باید ۱۱ رقم باشد",
