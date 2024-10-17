@@ -4,34 +4,28 @@
 
 {% load static %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'accounts/styles/accountStyle.css' %}">
-    <link rel="stylesheet" href="{% static 'accounts/styles/accountMedia.css' %}">
+<link rel="stylesheet" href="{% static 'accounts/styles/signup.css'%}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block favicon %}
-    <link rel="image" href="{% static 'accounts/img/mono.jpg' %}">
+    <!-- <link rel="image" href="{% static 'accounts/img/mono.jpg' %}"> -->
 {% endblock %}
 
 
 {% block content %}
     <div class="container">
-        <div class="right-item">
-            <img src="{% static 'accounts/img/persian_goldis.jpg' %}" alt="persian-logo">
-        </div>
-        <div class="top-item">
-            <img src="{% static 'accounts/img/mono.jpg' %}" alt="monogram">
-        </div>
-
-        <div class="left-item">
-            <h2 class="box-title">ورود به حساب کاربری</h2>
-            <form action="" method="post" novalidate>
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input id="btn" type="submit" value="ورود" style="line-height: 1rem;"><br>
-            </form>
-            <div>
-                <a href="#">ساخت حساب کاربری</a>
-                <a class="return-home" href="{% url 'home:home' %}">برگشت به صفحه اصلی</a>
+        <div class="form-wrapper">
+            <div class="form-wrapper-bg">
+            </div>
+            <div class="form-wrapper-right">
+                <h1>ورود</h1>
+                <form action="" method="post" class="form-signin" novalidate>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input id="btn" type="submit" value="ورود" class="form-btn"><br>
+                </form>
+                <a href="" class="signup-link">ثبت نام نکرده اید ؟</a>
             </div>
         </div>
     </div>

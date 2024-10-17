@@ -5,33 +5,29 @@
 {% load static %}
 {% block css %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'accounts/register.css' %}">
-    <link rel="stylesheet" href="{% static 'accounts/accountMedia.css' %}">
-    <link rel="stylesheet" href="{% static 'accounts/accountStyle.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/styles/signup.css'%}">
 {% endblock %}
 
 
 
 {% block content %}
-
     <div class="container">
-        <div class="right-item">
-            <img src="{% static 'accounts/img/fa_brandtitel_color1_jpg.jpg' %}" width="500" height="500" alt="persian-logo">
-        </div>
-        <div class="top-item">
-            <img src="{% static 'accounts/img/monogram_color 2_jpg_prev_ui.png' %}" width="260" height="180" alt="monogram">
-        </div>
-        <div class="left-item">
-            <h2 class="box-title-register">ساخت حساب کاربری</h2>
-             <form action="" method="post" novalidate>
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="ثبت نام"><br>
-                <a href="{% url 'home:home' %}">برگشت به صفحه اصلی</a>
-            </form>
+        <div class="form-wrapper">
+            <div class="form-wrapper-bg">
+            </div>
+            <div class="form-wrapper-right">
+                <h1>ثبت نام</h1>
+                <form action="" method="post" class="form-signup" novalidate>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input class="form-btn" type="submit" value="ثبت نام">
+                </form>
+                <!-- <a href="{% url 'home:home' %}">برگشت به صفحه اصلی</a> -->
+                <a href="#" class="signin-link">ثبت نام کرده اید ؟</a>
         </div>
     </div>
-
 {% endblock %}
 
-{% block js %}<script src="{% static 'accounts/js/account.js' %}"></script>{% endblock %}
+{% block js %}
+    <!-- <script src="{% static 'accounts/js/account.js' %}"></script> -->
+{% endblock %}
