@@ -3,12 +3,15 @@ from django.views import View
 from .forms import UserLoginForm
 from .forms import UserRegistrationForm
 
-from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+from .models import Account
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import check_password
 
 class UserRegisterView(View):
     form_class = UserRegistrationForm
@@ -28,7 +31,13 @@ class UserRegisterView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            User.objects.create_user(cd['username'],cd['phone_number'], cd['password'])
+            account = Account(
+                phone_number=cd['phone_number'],
+                password=make_password(cd['password']),  # Hash the password
+                rial_balance='0',
+                gold_balance='0'
+            )
+            account.save()
             messages.success(request, 'ثبت نام شما با موفقیت انجام شد', 'success')
             return redirect('home:home')
         return render(request, self.tamp_name, {'form': form})
@@ -51,13 +60,20 @@ class UserLoginView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            user = authenticate(request, username=cd['username'], password=cd['password'])
-            if user is not None:
-                login(request, user)
+            try:
+                user = Account.objects.get(phone_number=cd['phone_number'])
+            except Account.DoesNotExist:
+                user = None
+
+            if user and check_password(cd['password'], user.password):
+                request.session['user_id'] = user.User_ID
+                request.session['phone_number'] = user.phone_number
                 messages.success(request,'با موفقیت وارد شدید', 'success')
                 return redirect('home:home')
-            messages.error(request, 'نام کابری یا رمز ورود اشتباه است', 'warning')
+            else:
+                messages.error(request, 'نام کابری یا رمز ورود اشتباه است', 'warning')
         return render(request, self.temp_name, {'form': form})
+
 class UserLogoutView(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
 
