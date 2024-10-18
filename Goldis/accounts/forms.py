@@ -73,6 +73,8 @@ class UserRegistrationForm(forms.Form):
         return phone_number
 
 
+
+
 #sms code verification in user register form
 class VerifyCodeForm(forms.Form):
     code = forms.IntegerField(label='', error_messages = {
