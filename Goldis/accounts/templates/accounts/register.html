@@ -5,11 +5,40 @@
 {% load static %}
 {% block css %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'accounts/register_login_style.css' %}">
-{% endblock %}z
+    <link rel="stylesheet" href="{% static 'accounts/styles/signup.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+{% endblock %}
 
-{% block js %}{% endblock %}
+
 
 {% block content %}
+    <div class="container">
+        <div class="form-wrapper">
+            <div class="form-wrapper-bg"></div>
+            <div class="form-wrapper-right">
+                <h1>ثبت نام</h1>
 
+                <form action="" method="post" class="form-signup" novalidate>
+                    {% csrf_token %}
+                    <div class="input-group">
+                        {{ form.phone_number }}
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div class="input-group">
+                        {{ form.password }}
+                        <i class="fa-solid fa-key"></i>
+                    </div>
+                    <div class="input-group">
+                        {{ form.confirm_password }}
+                        <i class="fa-solid fa-key"></i>
+                    </div>
+                    <input class="form-btn" type="submit" value="ثبت نام">
+                </form>
+
+                <a href="#" class="signin-link">ثبت نام کرده اید ؟</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
+

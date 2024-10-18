@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}header{% endblock %}
+
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'accounts/styles/header.css'%}">
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+    <div class="bg bg-1"></div>
+    <div class="bg bg-2"></div>
+    <div class="card">
+        <div class="card-bg-wrapper">
+            <div class="card-bg"></div>
+        </div>
+        <h1 class="card-heading">goldis</h1>
+        <div class="card-img">
+            <img src="{% static 'accounts/img/photo_1_2024-10-17_00-06-25.jpg' %}" alt="logo-pic">
+        </div>
+        <div class="card-content">
+            <h3 class="small-heading">گلدیس</h3>
+            <h1 class="main-heading"> سیستم پیشرفته خرید طلای فیزیکی </h1>
+            <p>گلدیس با دید وسیع در رابطه با ارزش طلا و با هدف ارائه شفافیت در قیمت گذاری و امکان‌سازی خرید طلای آبشده برای همه شروع به فعالیت کرد.</p>
+            <button class="card-btn" type="button">ورود</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+    <!-- <script src="{% static 'accounts/js/account.js' %}"></script> -->
+{% endblock %}

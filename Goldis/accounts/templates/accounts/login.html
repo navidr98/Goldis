@@ -4,13 +4,41 @@
 
 {% load static %}
 {% block css %}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'accounts/register_login_style.css' %}">
+    <link rel="stylesheet" href="{% static 'accounts/styles/signup.css'%}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block favicon %}
+    <!-- <link rel="image" href="{% static 'accounts/img/mono.jpg' %}"> -->
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="form-wrapper">
+            <div class="form-wrapper-bg">
+            </div>
+            <div class="form-wrapper-right">
+                <h1>ورود</h1>
+                <form action="" method="post" class="form-signin" novalidate>
+                    {% csrf_token %}
+                    <div class="input-group">
+                        {{ form.phone_number }}
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div class="input-group">
+                        {{ form.password }}
+                        <i class="fa-solid fa-key"></i>
+                    </div>
+                    <input id="btn" type="submit" value="ورود" class="form-btn"><br>
+                </form>
+                <a href="{% url 'accounts:user_register' %}" class="signup-link">ثبت نام نکرده اید ؟</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block js %}
-{% endblock %}
-
-{% block content %}
-
+    <script src="{% static 'accounts/js/account.js' %}"></script>
 {% endblock %}
