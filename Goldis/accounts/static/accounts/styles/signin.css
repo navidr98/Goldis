@@ -1,0 +1,168 @@
+@font-face {
+    font-family: 'shabnam';
+    src: url(../typeface/shabnam);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+    font-family: 'shabnam';
+}
+
+html {
+    font-size: 62.5%;
+}
+
+:root{
+    --gray-color: rgb(160, 157, 157);
+    --orange-color: rgb(228, 190, 138);
+    --dark-blue-color: rgb(126, 151, 201);
+    --dark-gray-color: rgb(70, 71, 74);
+    --white-color: rgb(241, 238, 238);
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--white-color);
+    position: relative;
+}
+
+.form-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) ;
+    width: 80rem;
+    height:45rem ;
+    background-color: var(--dark-gray-color);
+    opacity: 0.8;
+    display: flex;
+    border-radius: 2rem;
+    box-shadow: 0.3rem 3rem 3rem rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+.form-wrapper-bg {
+    position: absolute;
+    width: 80rem;
+    height: 50rem;
+    background-color: var(--orange-color);
+    opacity: 0.9;
+    border-radius: 15rem;
+    left: -40%;
+    top: -60%;
+    transform-origin: right bottom;
+    transform: rotateZ(-40deg);
+}
+
+.form-wrapper-right{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content:center ;
+    align-items: center;
+    text-align: center;
+}
+
+
+.form-wrapper h1 {
+    font-size: 4rem;
+    background:linear-gradient(to left
+    ,var(--orange-color) , var(--white-color) 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: -2rem 0 1rem 0;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group input {
+    background-color: var(--dark-gray-color);
+    width: 22rem;
+    height: 4rem;
+    margin:1rem 0 ;
+    border: none;
+    color: var(--orange-color);
+    font-size: 1.5rem;
+    border-bottom:0.2rem solid 
+    var(--orange-color);
+    padding-right: 1rem;
+    background-color: transparent;
+}
+
+.input-group input::placeholder {
+    color: var(--gray-color);
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.input-group input:focus {
+    border-color: var(--white-color);
+}
+
+.input-group i {
+    position: absolute;
+    top: 50%;
+    left: 0.5rem;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    color: var(--gray-color);
+    opacity: 0.3;
+}
+
+.form-btn {
+    width: 20rem;
+    height: 4.5rem;
+    margin-top: 2rem;
+    border: none;
+    border-radius: 5rem;
+    cursor: pointer;
+    color: var(--dark-gray-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+    box-shadow: 0.1rem 0.1rem 20rem var(--orange-color);
+    background:linear-gradient(to left
+    ,var(--orange-color) , var(--white-color) 90%);
+}
+
+.form-btn:hover {
+    background:linear-gradient(to right
+    ,var(--orange-color) , var(--white-color) 90%);
+}
+
+.form-btn:active {
+    transform: translateY(0.2rem);
+}
+
+.signin-link{
+    position: absolute;
+    bottom: 1.8rem;
+    font-size: 1.5rem;
+    font-weight: lighter;
+    color: var(--gray-color);
+
+}
+
+.signup-link{
+    position: absolute;
+    bottom: 8rem;
+    font-size: 1.5rem;
+    font-weight: lighter;
+    color: var(--gray-color);
+
+}
+
+.signin-link:hover {
+    color: var(--white-color);
+}
+
+.signup-link:hover {
+    color: var(--white-color);
+}

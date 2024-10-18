@@ -1,0 +1,149 @@
+@font-face {
+    font-family: 'shabnam';
+    src: url(../typeface/shabnam-Thin.ttf);
+}
+
+*{
+    font-family: 'shabnam';
+}
+
+
+:root{
+    --gray-color: rgb(160, 157, 157);
+    --orange-color: rgb(228, 190, 138);
+    --dark-blue-color: rgb(126, 151, 201);
+    --dark-gray-color: rgb(70, 71, 74);
+    --white-color: rgb(241, 238, 238);
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--white-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.bg {
+    width: 180rem;
+    height: 180rem;
+    border-radius: 50%;
+    background-color: var(--dark-gray-color);
+    position: absolute;
+}
+
+.bg-1 {
+    right: 21%;
+    top: -10%;
+}
+
+.bg-2 {
+    left: -15%;
+    top: 35%;
+}
+
+.card {
+    width: 50rem;
+    height: 30rem;
+    background-color: var(--gray-color);
+    opacity: 0.8;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    border-radius: 5px;
+    box-shadow: 0 1rem 4rem var(--dark-gray-color);
+}
+
+.card-bg-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-bg {
+    width: 100%;
+    height: 200%;
+    background-color: var(--gray-color);
+    position: absolute;
+    transform: rotateZ(40deg);
+    top: -50%;
+    left: -55%;
+    border-radius: 0 50% 50% 0;
+}
+
+.card-heading {
+    font-size: 10rem;
+    position: absolute;
+    top: -20%;
+    right: 10%;
+    letter-spacing: 1rem;
+    text-transform: uppercase;
+    color: #77797d;
+    opacity: 0.2;
+}
+
+.card img {
+    position: absolute;
+    top: -3%;
+    left: -6%;
+    height: 95%;
+    width: 55%;
+}
+
+.card-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    padding: 5rem;
+}
+
+.small-heading {
+    margin-top: 0rem;
+    margin-bottom: 4rem;
+    font-size: 5rem;
+    background:  linear-gradient(to left
+    ,var(--orange-color) , var(--white-color) 30%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+}
+
+.main-heading {
+    font-size: 2rem;
+    color: var(--white-color);
+    text-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+    margin: 0 0rem 0rem 7rem;
+}
+
+.card-content p {
+    font-size: 1rem;
+    color: var(--dark-gray-color);
+    line-height: 1.2;
+    width: 30rem;
+    margin: 1rem 0 2rem 5rem;
+}
+
+.card-btn {
+    position: absolute;
+    margin-top: 20rem;
+    bottom: 11rem;
+    left: 10rem;
+    width: 10rem;
+    height: 3rem;
+    border-radius: 0.7rem;
+    border: none;
+    background: linear-gradient(to left
+    ,var(--orange-color) , var(--white-color) 70%);
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.card-btn:hover {
+    background: linear-gradient(to right
+    ,var(--orange-color) , var(--white-color) 70%);
+}
+
