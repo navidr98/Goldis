@@ -73,6 +73,26 @@ class UserRegistrationForm(forms.Form):
         return phone_number
 
 
+# user login form shown in register page
+class UserLoginForm(forms.Form):
+
+    phone_number = forms.CharField(min_length=11, max_length=11, error_messages = {
+                'required':"لطفا شماره تلفن خود را وارد کنید",
+                'min_length': "شماره تلفن باید ۱۱ رقم باشد",
+                'max_length': "شماره تلفن نباید بیشتر از ۱۱ رقم باشد",
+                }, label='', widget=forms.TextInput(attrs={'placeholder':'شماره تلفن', 'class':''}))
+
+    password = forms.CharField(min_length=8, label='', error_messages = {
+                 'required':"لطفا رمز عبور خود را وارد کنید",
+                 'min_length': "رمز عبور باید حداقل ۸ حرف باشد",
+                 }, widget=forms.PasswordInput(attrs={'placeholder':'رمز عبور', 'class':''}))
+
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data['phone_number']
+        user = User.objects.filter(phone_number=phone_number).exists()
+        if not user:
+            raise ValidationError('شماره تلفن یا رمز عبور اشتباه است')
+        return phone_number
 
 
 #sms code verification in user register form
