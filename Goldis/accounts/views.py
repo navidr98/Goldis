@@ -7,6 +7,9 @@ from .models import OtpCode, User
 from django.contrib import messages
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.mixins import LoginRequiredMixin
+from datetime import datetime, timedelta, timezone
+import pytz
+
 
 class UserRegisterView(View):
 
@@ -27,6 +30,10 @@ class UserRegisterView(View):
         form = self.form_class(request.POST)
 
         if form.is_valid():
+            cd = form.cleaned_data
+            otp = OtpCode.objects.filter(phone_number=cd['phone_number'])
+            if otp.exists():
+                otp.delete()
             random_code = random.randint(1000,9999)
             send_otp_code(form.cleaned_data['phone_number'], random_code)
             OtpCode.objects.create(phone_number=form.cleaned_data['phone_number'], code=random_code)
@@ -57,17 +64,22 @@ class UserRegisterVerifyCodeView(View):
 
         if form.is_valid():
             cd = form.cleaned_data
-            if cd['code'] == code_instance.code:
-                User.objects.create_user(user_session['phone_number'], user_session['password'])
-
-                code_instance.delete()
-                del request.session['user_registration_info']
-                messages.success(request, 'ثبت نام شما با موفقیت انجام شد', 'success')
-                return redirect('home:home')
-
+            otp = OtpCode.objects.get(code=code_instance.code)
+            if otp.is_expired():
+                messages.error(request, 'اعتبار کد پایان یافته', 'danger')
+                return redirect('accounts:user_register')
             else:
-                messages.error(request, 'کد اشتباه میباشد', 'error')
-                return redirect('accounts:register_verify_code')
+                if cd['code'] == code_instance.code:
+                    User.objects.create_user(user_session['phone_number'], user_session['password'])
+
+                    code_instance.delete()
+                    del request.session['user_registration_info']
+                    messages.success(request, 'ثبت نام شما با موفقیت انجام شد', 'success')
+                    return redirect('home:home')
+
+                else:
+                    messages.error(request, 'کد اشتباه میباشد', 'error')
+                    return redirect('accounts:register_verify_code')
 
         return render(request, self.temp_name, {'form':form})
 
@@ -92,6 +104,9 @@ class UserLoginView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
+            otp = OtpCode.objects.filter(phone_number=cd['phone_number'])
+            if otp.exists():
+                otp.delete()
             user = authenticate(request, phone_number=cd['phone_number'], password=cd['password'])
             if user is not None:
                 random_code = random.randint(1000, 9999)
@@ -124,16 +139,21 @@ class UserLoginVerifyCodeView(View):
 
         if form.is_valid():
             cd = form.cleaned_data
-            if cd['code'] == code_instance.code:
-                user = User.objects.get(phone_number=user_session['phone_number'])
-                login(request, user)
-                code_instance.delete()
-                messages.success(request, 'ثبت نام شما با موفقیت انجام شد', 'success')
-                return redirect('home:home')
-
+            otp = OtpCode.objects.get(code=code_instance.code)
+            if otp.is_expired():
+                messages.error(request, 'اعتبار کد پایان یافته', 'danger')
+                return redirect('accounts:user_login')
             else:
-                messages.error(request, 'کد اشتباه میباشد', 'error')
-                return redirect('accounts:login_verify_code')
+                if cd['code'] == code_instance.code:
+                    user = User.objects.get(phone_number=user_session['phone_number'])
+                    login(request, user)
+                    code_instance.delete()
+                    messages.success(request, 'ثبت نام شما با موفقیت انجام شد', 'success')
+                    return redirect('home:home')
+
+                else:
+                    messages.error(request, 'کد اشتباه میباشد', 'danger')
+                    return redirect('accounts:login_verify_code')
 
         return render(request, self.temp_name, {'form': form})
 

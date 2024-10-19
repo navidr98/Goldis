@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
 from .managers import UserManager
+from django.utils import timezone
 
 class User(AbstractBaseUser):
     phone_number = models.CharField(max_length=11, unique=True)
@@ -34,4 +35,7 @@ class OtpCode(models.Model):
 
     def __str__(self):
         return f'{self.phone_number} - {self.code} - {self.created}'
+
+    def is_expired(self):
+        return timezone.now() > self.created + timezone.timedelta(minutes=1)
 
