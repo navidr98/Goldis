@@ -1,0 +1,42 @@
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+{% endblock %}
+
+
+<div class="navigation">
+    <ul>
+        <li><a href="#">صفحه اصلی</a></li>
+        <li><a href="#">کیف پول</a></li>
+        <li><a href="#">خدمات گلدیس</a></li>
+        <li><a href="#">درباره ما</a></li>
+    </ul>
+    <span class="nav-icon"><i class="fa-solid fa-bars"></i></span>
+    <div class="user-pic">
+        <img src="../../static/img/—Pngtree—outline user icon_5045523_prev_ui.png" alt="user-pic">
+        <ul>
+            <li class="sub-item">
+                <i class="fa-solid fa-user"></i>
+                <p>حساب کاربری</p>
+            </li>
+            <li class="sub-item">
+                <i class="fa-solid fa-wallet"></i>
+                <p>کیف پول من</p>
+            </li>
+            <li class="sub-item">
+                <i class="fa-solid fa-edit"></i>
+                <p>ویرایش پروفایل</p>
+            </li>
+            <li class="sub-item">
+                <i class="fa-solid fa-sign"></i>
+                <p>خروج</p>
+            </li>
+        </ul>
+    </div>
+
+   
+
+    <div class="logo-pic">
+        <img src="../../static/img/ImportedPhoto.751717765.598174.jpeg" alt="logo-pic">
+    </div>
+</div>

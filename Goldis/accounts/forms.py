@@ -100,5 +100,6 @@ class VerifyCodeForm(forms.Form):
     code = forms.IntegerField(label='', error_messages = {
                 'required':"لطفا کد ارسال شده رت وارد کنید",
                 'min_length': "کد باید ۴ رقم باشد",
-                'max_length': "کد باید ۴ رقم باشد",},
+                'max_length': "کد باید ۴ رقم باشد",
+                'invalid':"لطفا کد با فرمت صحیح وارد کیند"},
                 widget=forms.TextInput(attrs={'placeholder':'تکرار رمز عبور', 'class':''}))
