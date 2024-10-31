@@ -141,3 +141,11 @@ form{
     flex-direction: column;
     align-items: center;
 }
+.kharid-mali{
+    position: relative;
+    bottom: -13rem;
+    text-align: justify;
+}
+a{
+    text-decoration: none;
+}
