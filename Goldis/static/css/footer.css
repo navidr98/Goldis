@@ -24,9 +24,10 @@ html {
 }
 
 footer {
-    position: fixed;
+    position:sticky;
     bottom: 0;
     height: 30rem;
+    /* margin-top: auto; */
 }
 
 @media (max-height:800px) 
@@ -42,9 +43,9 @@ footer {
     widows: 100%;
     text-align: right;
     padding: 50px 50px 60px 50px;
-    margin-top: 80px;
+    /* margin-top: 80px; */
     border-radius: 1rem;
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     width: 100%;
 }

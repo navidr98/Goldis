@@ -21,7 +21,8 @@
                 <form action="" method="post" class="form-signup" novalidate>
                     {% csrf_token %}
                     {% for field in form %}
-                        <div class="">
+                        <div style="color: rgb(241, 238, 238); font-size: 15px;
+                         list-style: none; font-family: 'shabnam'; padding-bottom: 5px; font-weight: bold;">
                             {{ field.errors }}
                         </div>
                     {% endfor %}

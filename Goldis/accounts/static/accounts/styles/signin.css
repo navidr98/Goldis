@@ -16,6 +16,10 @@ html {
     font-size: 62.5%;
 }
 
+body{
+    background-color: var(--white-color);
+}
+
 :root{
     --gray-color: rgb(160, 157, 157);
     --orange-color: rgb(228, 190, 138);
@@ -152,7 +156,7 @@ html {
 
 .signup-link{
     position: absolute;
-    bottom: 8rem;
+    bottom: 2.3rem;
     font-size: 1.5rem;
     font-weight: lighter;
     color: var(--gray-color);

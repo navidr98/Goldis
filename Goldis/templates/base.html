@@ -8,9 +8,6 @@
         {% block title %}{% endblock %}
     </title>
 
-   
-    <link rel="stylesheet" href="../static/styles/includes/footer.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     {% block css %} {% endblock %}
 
     {% block favicon %} {% endblock %}
@@ -22,9 +19,11 @@
 
     {% include 'includes/messages.html' %}
     
+
     {% block content %} {% endblock %}
-    
+
     {% include 'includes/footer.html' %}
+    
     
     {% block js %} {% endblock %}
 
