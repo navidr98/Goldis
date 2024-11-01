@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فروش</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'sales/styles/checkWallet.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="box gold-box">
+            <div class="matn">
+                <span class="title">
+                    فروش طلا
+                </span>
+                <div class="explain">
+                    با وارد کردن میزان گرم طلای مورد نظر میتوانید قیمت نهایی فروش طلای آب شده خود را مشاهده کنید همچنین با وارد کردن مبلغ مورد نظر میتوانید مقدار گرم طلای قابل فروش را مشاهده کنید . سپس با کلیک بر روی فروش اقدام به انجام معامله کنید .
+                    <br>
+در نظر داشته باشید خرید و فروش طلای آبشده مشمول مالیات نبوده و هیچ گونه اجرت از شما دریافت نمی‌شود.
+                </div>
+            </div>
+            <div class="left-side">
+                <span class="header">ماشین حساب فروش طلا</span>
+                <form class="calculate-box" method ="post">
+                    {% csrf_token %}
+                    <div class="area gold-balance-left">
+                        <span>
+                            موجودی طلا
+                        </span>
+                        <span>
+                            {{wallet.gold}}
+                        </span>
+                    </div>
+                    <div class="choose">
+                        <button class="sell">
+                            فروش تمام طلا
+                        </button>
+                        <button class="sell">
+                            فروش 1/2 طلا
+                        </button>
+                        <button class="sell">
+                            فروش 1/4 طلا
+                        </button>
+                    </div>
+                    <div class="area gold-type">
+                        <span>نوع طلا</span>
+                        <span>طلای آب شده</span>
+                    </div>
+                    <div class="area sell-box">
+                        <span>
+                            قیمت فروش طلا :
+                        </span>
+                        <div class="amount">
+                            <span>
+                                {{price_per_gram}}
+                            </span>
+                            <span>
+                                ریال
+                            </span>
+                        </div>
+                    </div>
+                    <div class="area money-box">
+                        <span>
+                            مبلغ :
+                        </span>
+                        <div class="amount">
+                            {{ form.rial_amount }}
+                            <span>
+                                ریال
+                            </span>
+                        </div>
+                        {% for error in form.rial_amount.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="area gold-amount">
+                        <span>گرم طلا :</span>
+                        <div class="amount">
+                            {{ form.gold_amount }}
+                            <span>گرم</span>
+                        </div>
+                        {% for error in form.gold_amount.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% if form.non_field_errors %}
+                        <div class="error">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+                    <div class="sell-btn">
+                        <button class="btn" type="submit">
+                            فروش
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

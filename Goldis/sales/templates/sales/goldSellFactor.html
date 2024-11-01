@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'sales/styles/goldReciept.css' %}">
+</head>
+<body>
+    <div class="container">
+        <span>
+            <img src="{% static 'sales/img/gold-bars-shiny-svgrepo-com.svg' %}" width="50px" alt="">
+        </span>
+        <div class="title">
+            فاکتور فروش طلا به گلدیس
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="buy">
+                <span class="mablagh">
+                    مبلغ فروش شما
+                </span>
+                <div>
+                    <span class="amount num">
+                        {{rial_amount}}
+                    </span>
+                    <span>
+                        ریال
+                    </span>
+                </div>
+            </div>
+            <div class="area">
+                <span class="field">مقدار فروش </span>
+                <div>
+                    <span class="num">
+                        {{gold_amount}}
+                    </span>
+                    <span>
+                        گرم
+                    </span>
+                </div>
+            </div>
+            <div class="area">
+                <span class="field">قیمت فروش طلای خام</span>
+                <div>
+                    <span class="num">{{price_per_gram}}</span>
+                    <span>ریال</span>
+                </div>
+            </div>
+            <div class="area">
+                <span class="field">کارمزد گلدیس</span>
+                <div>
+                    <span class="num">0</span>
+                    <span>ریال</span>
+                </div>
+            </div>
+            <div class="area">
+                <span class="field">کارمزد بانک</span>
+                <div>
+                    <span class="num">0</span>
+                    <span>ریال</span>
+                </div>
+            </div>
+            <div class="area">
+                <span class="field">مبلغ کل</span>
+                <div>
+                    <span class="num">{{rial_amount}}</span>
+                    <span>ریال</span>
+                </div>
+            </div>
+            <div>
+                <button class="right-btn" type="submit" name="action" value="confirm">
+                    تایید
+                </button>
+                <button class="left-btn" type="submit" name="action" value="cancel">
+                    انصراف
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
