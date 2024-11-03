@@ -84,12 +84,12 @@ DATABASES = {
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
+#         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'goldis',
-#         'USER': 'root',
-#         'PASSWORD': 'sp15hr83',
-#         'HOST': 'localhost',
-#         'PORT': '3306',
+#         'USER': 'postgres',
+#         'PASSWORD': '12341234',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432'
 #     }
 # }
 
@@ -132,7 +132,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
-STATIC_ROOT = 'static/'
+# STATIC_ROOT = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

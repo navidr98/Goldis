@@ -1,7 +1,5 @@
-from cProfile import label
-
 from django import forms
-from .models import User
+from .models import User, UserBankInfo
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
@@ -46,17 +44,17 @@ class UserRegistrationForm(forms.Form):
                 'required':"لطفا شماره تلفن خود را وارد کنید",
                 'min_length': "شماره تلفن باید ۱۱ رقم باشد",
                 'max_length': "شماره تلفن نباید بیشتر از ۱۱ رقم باشد",
-                }, label='', widget=forms.TextInput(attrs={'placeholder':'شماره تلفن', 'class':''}))
+                }, label='', widget=forms.TextInput(attrs={'placeholder':'شماره تلفن'}))
 
     password = forms.CharField(min_length=8, label='', error_messages = {
                  'required':"لطفا رمز عبور خود را وارد کنید",
                  'min_length': "رمز عبور باید حداقل ۸ حرف باشد",
-                 }, widget=forms.PasswordInput(attrs={'placeholder':'رمز عبور', 'class':''}))
+                 }, widget=forms.PasswordInput(attrs={'placeholder':'رمز عبور'}))
 
     confirm_password = forms.CharField(min_length=8, label='', error_messages = {
                  'required':"لطفا رمز عبود خود را مجدد وارد کنید",
                  'min_length': "رمز عبور باید حداقل ۸ حرف باشد",
-                 }, widget=forms.PasswordInput(attrs={'placeholder':'تکرار رمز عبور', 'class':''}))
+                 }, widget=forms.PasswordInput(attrs={'placeholder':'تکرار رمز عبور'}))
 
     def clean(self):
         cd = super().clean()
@@ -80,12 +78,12 @@ class UserLoginForm(forms.Form):
                 'required':"لطفا شماره تلفن خود را وارد کنید",
                 'min_length': "شماره تلفن باید ۱۱ رقم باشد",
                 'max_length': "شماره تلفن نباید بیشتر از ۱۱ رقم باشد",
-                }, label='', widget=forms.TextInput(attrs={'placeholder':'شماره تلفن', 'class':''}))
+                }, label='', widget=forms.TextInput(attrs={'placeholder':'شماره تلفن'}))
 
     password = forms.CharField(min_length=8, label='', error_messages = {
                  'required':"لطفا رمز عبور خود را وارد کنید",
                  'min_length': "رمز عبور باید حداقل ۸ حرف باشد",
-                 }, widget=forms.PasswordInput(attrs={'placeholder':'رمز عبور', 'class':''}))
+                 }, widget=forms.PasswordInput(attrs={'placeholder':'رمز عبور'}))
 
     def clean_phone_number(self):
         phone_number = self.cleaned_data['phone_number']
@@ -98,8 +96,106 @@ class UserLoginForm(forms.Form):
 #sms code verification in user register form
 class VerifyCodeForm(forms.Form):
     code = forms.IntegerField(label='', error_messages = {
-                'required':"لطفا کد ارسال شده رت وارد کنید",
+                'required':"لطفا کد ارسال شده را وارد کنید",
                 'min_length': "کد باید ۴ رقم باشد",
                 'max_length': "کد باید ۴ رقم باشد",
-                'invalid':"لطفا کد با فرمت صحیح وارد کیند"},
-                widget=forms.TextInput(attrs={'placeholder':'تکرار رمز عبور', 'class':''}))
+                'invalid':"لطفا کد با فرمت صحیح وارد کنید"},
+                widget=forms.TextInput(attrs={'placeholder':'کد یکبار مصرف'}))
+
+
+class UserProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ('phone_number', 'full_name')
+
+        widgets = {
+            'phone_number': forms.TextInput(attrs={'placeholder': 'شماره تلفن'}),
+            'full_name': forms.TextInput(attrs={'placeholder': 'نام و نام خانوادگی '}),
+        }
+        labels = {
+            'phone_number': '',
+            'full_name': '',
+        }
+        error_messages = {
+            'phone_number': {
+                'required': 'لطفا شماره تلفن همراه را وارد کنید',
+                'invalid': 'شماره همراه نمی تواند خالی باشد',
+                'min_length': "شماره تلفن باید ۱۱ رقم باشد",
+                'max_length': "شماره تلفن باید ۱۱ رقم باشد",
+            },
+            'full_name': {
+                'required': 'نام و نام خانوادگی را وارد کنید',
+                'invalid': 'نام و نام خانو',
+                'max_length': "نام و نام خانوادگی باید کمتر از ۱۰۰ حرف باشد",
+            },
+        }
+
+class UserChangePasswordForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ('password',)
+        # widgets = {
+        #     'password': forms.CharField(attrs={'placeholder': 'شماره تلفن'}),
+        # }
+        labels = {
+            'password': '',
+        }
+        error_messages = {
+            'password': {
+                'required': "لطفا رمز عبود خود را مجدد وارد کنید",
+                'min_length': "رمز عبور باید حداقل ۸ حرف باشد",
+            },
+        }
+
+    confirm_password = forms.CharField(min_length=8, label='', error_messages={
+        'required': "لطفا رمز عبود خود را مجدد وارد کنید",
+        'min_length': "رمز عبور باید حداقل ۸ حرف باشد",
+    }, widget=forms.PasswordInput(attrs={'placeholder': 'تکرار رمز عبور'}))
+
+    def clean(self):
+        cd = super().clean()
+        p1 = cd.get('password')
+        p2 = cd.get('confirm_password')
+        if p1 and p2 and p1 != p2:
+            raise ValidationError('رمز عبور همخوانی ندارد')
+
+
+class UserBankInfoForm(forms.ModelForm):
+    class Meta:
+        model = UserBankInfo
+        fields = ('cart_no', 'sheba')
+
+    widgets = {
+        'cart_no': forms.TextInput(attrs={'placeholder': 'شماره کارت'}),
+        'sheba': forms.TextInput(attrs={'placeholder': 'شماره شبا'}),
+    }
+    labels = {
+        'cart_no': '',
+        'sheba': '',
+    }
+    error_messages = {
+        'cart_no': {
+            'required':"شماره کارت را وارد کنید",
+            'invalid':"شماره کارت را با فرمت صحیح وارد کنید"
+        },
+        'sheba': {
+            'required':"شماره شبا را وارد کنید",
+            'invalid':"شماره شبات را با فرمت صحیح وارد کنید"
+        },
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

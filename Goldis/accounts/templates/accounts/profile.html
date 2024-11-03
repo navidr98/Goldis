@@ -12,34 +12,56 @@
 
 
 {% block content %}
-<div class="container">
-    <div class="circle-bg1"></div>
-    <div class="circle-bg2"></div>
-    <div class="circle-bg3"></div>
-    <div class="form-wrapper">
-        <h1>مشخصات من</h1>
-        <input type="text" class="feild" placeholder=" نام و نام خانوادگی">
-        <input type="text" class="feild" placeholder="کد ملی">
-        <input type="text" class="feild" placeholder="کد پستی">
-        <textarea class="feild msg" placeholder="ادرس"></textarea>
-        <button class="button">ثبت</button>
-    </div>
-    
-</div>
 
-<div class="container2">
-    <div class="circle-bg4"></div>
-    <div class="circle-bg5"></div>
-    <div class="circle-bg6"></div>
-    <div class="form-wrapper">
-        <h1>اطلاعات کاربری</h1>
-        <input type="text" class="feild" placeholder=" شماره موبایل">
-        <input type="password" class="feild" placeholder="رمز عبور ">
-        <input type="password" class="feild" placeholder="تکرار رمزعبور ">
-        <button class="button">ثبت</button>
+
+
+    <div class="container">
+        <div class="circle-bg1"></div>
+        <div class="circle-bg2"></div>
+        <div class="circle-bg3"></div>
+        <div class="form-wrapper">
+            <h1>مشخصات من</h1>
+            <form method="post" action="" novalidate>
+                {% csrf_token %}
+                {% for field in form %}
+                    <div>
+                        {{ field.errors }}
+                    </div>
+                {% endfor %}
+                <div>
+                    {{ form.phone_number }}
+                </div>
+                <div>
+                    {{ form.full_name }}
+                </div>
+                <input type="submit" value="ثبت">
+            </form>
+        </div>
     </div>
-    
-</div>
+
+    <div class="container2">
+        <div class="circle-bg4"></div>
+        <div class="circle-bg5"></div>
+        <div class="circle-bg6"></div>
+        <div class="form-wrapper">
+            <h1>تغییر رمز عبور</h1>
+            <form method="post" action="" novalidate>
+                {% csrf_token %}
+                {% for field in form %}
+                    <div>
+                        {{ field.errors }}
+                    </div>
+                {% endfor %}
+                <div>
+                    {{ pass_form.password }}
+                </div>
+                <div>
+                    {{ pass_form.confirm_password }}
+                </div>
+                <input type="submit" value="ثبت">
+            </form>
+        </div>
+    </div>
 
 {% endblock %}
 

@@ -6,7 +6,7 @@
 
 <div class="navigation">
     <ul>
-        <li><a href="#">صفحه اصلی</a></li>
+        <li><a href="{% url 'home:home' %}">صفحه اصلی</a></li>
         <li><a href="#">کیف پول</a></li>
         <li><a href="#">خدمات گلدیس</a></li>
         <li><a href="#">درباره ما</a></li>
@@ -14,24 +14,22 @@
     <span class="nav-icon"><i class="fa-solid fa-bars"></i></span>
     <div class="user-pic">
         <img src="../../static/img/—Pngtree—outline user icon_5045523_prev_ui.png" alt="user-pic">
-        <ul>
-            <li class="sub-item">
-                <i class="fa-solid fa-user"></i>
-                <p>حساب کاربری</p>
-            </li>
-            <li class="sub-item">
-                <i class="fa-solid fa-wallet"></i>
-                <p>کیف پول من</p>
-            </li>
-            <li class="sub-item">
-                <i class="fa-solid fa-edit"></i>
-                <p>ویرایش پروفایل</p>
-            </li>
-            <li class="sub-item">
-                <i class="fa-solid fa-sign"></i>
-                <p>خروج</p>
-            </li>
-        </ul>
+        {% if request.user.is_authenticated %}
+            <ul>
+                <li class="sub-item">
+                    <i class="fa-solid fa-user"></i>
+                    <a class="nav-link active" href="{% url 'accounts:user_profile' request.user.id %}">حساب کاربری</a>
+                </li>
+                <li class="sub-item">
+                    <i class="fa-solid fa-wallet"></i>
+                    <a class="nav-link active" href="{% url 'accounts:user_bank_info' request.user.id %}">حساب بانکی</a>
+                </li>
+                <li class="sub-item">
+                    <i class="fa-solid fa-sign"></i>
+                    <a class="nav-link active" href="{% url 'accounts:logout' %}">خروج</a>
+                </li>
+            </ul>
+        {% endif %}
     </div>
 
    
