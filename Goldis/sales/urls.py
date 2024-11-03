@@ -13,6 +13,7 @@ urlpatterns = [
     path('wallet/' , views.wallet_view , name = 'wallet'),
     path('deposit/' , views.deposit , name = 'deposit'),
     path('withdraw/' , views.withdraw , name = 'withdraw'),
+    path('transactions/' , views.transactions , name = 'transactions'),
 
 ]
 
