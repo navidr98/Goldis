@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-import requests
 from django.urls import reverse
 from .forms import SaleForm
 from .forms import Walletform
+from django.db import models
+from .models import Transaction
 
 # Static wallet for demonstration purposes
 wallet = {
@@ -21,8 +22,8 @@ def buy(request):
             if rial_amount:
                 if wallet['rial'] >= float(rial_amount):
                     gold_amount = float(rial_amount) / price_per_gram
-                    wallet['rial'] -= float(rial_amount)
-                    wallet['gold'] += gold_amount
+                    #wallet['rial'] -= float(rial_amount)
+                    #wallet['gold'] += gold_amount
                     # Redirect to 'buyfactor' with variables
                     return redirect(
                         reverse('sales:buyfactor') + f'?rial_amount={rial_amount}&gold_amount={gold_amount}&price_per_gram={price_per_gram}'
@@ -32,8 +33,8 @@ def buy(request):
             elif gold_amount:
                 rial_amount = float(gold_amount) * price_per_gram
                 if wallet['rial'] >= rial_amount:
-                    wallet['rial'] -= rial_amount
-                    wallet['gold'] += float(gold_amount)
+                    #wallet['rial'] -= rial_amount
+                    #wallet['gold'] += float(gold_amount)
                     # Redirect to 'buyfactor' with variables
                     return redirect(
                         reverse('sales:buyfactor') + f'?rial_amount={rial_amount}&gold_amount={gold_amount}&price_per_gram={price_per_gram}'
@@ -55,8 +56,8 @@ def sell(request):
             if gold_amount:
                 if wallet['gold'] >= float(gold_amount):
                     rial_amount = float(gold_amount) * price_per_gram
-                    wallet['gold'] -= float(gold_amount)
-                    wallet['rial'] += rial_amount
+                    #wallet['gold'] -= float(gold_amount)
+                    #wallet['rial'] += rial_amount
                     # Redirect to 'sellfactor' with variables
                     return redirect(
                         reverse('sales:sellfactor') + f'?rial_amount={rial_amount}&gold_amount={gold_amount}&price_per_gram={price_per_gram}'
@@ -66,8 +67,8 @@ def sell(request):
             elif rial_amount:
                 gold_amount = float(rial_amount) / price_per_gram
                 if wallet['gold'] >= gold_amount:
-                    wallet['gold'] -= gold_amount
-                    wallet['rial'] += float(rial_amount)
+                    #wallet['gold'] -= gold_amount
+                    #wallet['rial'] += float(rial_amount)
                     # Redirect to 'sellfactor' with variables
                     return redirect(
                         reverse('sales:sellfactor') + f'?rial_amount={rial_amount}&gold_amount={gold_amount}&price_per_gram={price_per_gram}'
@@ -82,9 +83,35 @@ def sell(request):
 def buyfactor(request):
     if request.method == 'POST':
         action = request.POST.get('action')
+        rial_amount = float(request.POST.get('rial_amount'))
+        gold_amount = float(request.POST.get('gold_amount'))
+        price_per_gram = float(request.POST.get('price_per_gram'))
         if action == 'confirm':
-            # TODO: Implement payment processing later
-            pass  # Placeholder for payment processing
+            # Check if the user has enough rial in the wallet
+            if wallet['rial'] >= rial_amount:
+                # Update the wallet
+                wallet['rial'] -= rial_amount
+                wallet['gold'] += gold_amount
+                
+                transaction = Transaction.objects.create(
+                    #user=request.user,
+                    transaction_type='buy_gold',
+                    seller='Goldis',
+                    rial_amount=rial_amount,
+                    gold_amount=gold_amount,
+                    price_per_gram=price_per_gram
+                )
+                return redirect('sales:wallet')
+            else:
+                # Not enough funds, show an error
+                error_message = 'موجودی ریال در کیف پول کافی نیست.'
+                context = {
+                    'rial_amount': rial_amount,
+                    'gold_amount': gold_amount,
+                    'price_per_gram': price_per_gram,
+                    'error_message': error_message,
+                }
+                return render(request, 'sales/goldBuyFactor.html', context)
         elif action == 'cancel':
             return redirect('home:home')  # Redirect to home page
     else:
@@ -101,9 +128,36 @@ def buyfactor(request):
 def sellfactor(request):
     if request.method == 'POST':
         action = request.POST.get('action')
+        rial_amount = float(request.POST.get('rial_amount'))
+        gold_amount = float(request.POST.get('gold_amount'))
+        price_per_gram = float(request.POST.get('price_per_gram'))
         if action == 'confirm':
-            # TODO: Implement payment processing later
-            pass  # Placeholder for payment processing
+            # Check if the user has enough gold in the wallet
+            if wallet['gold'] >= gold_amount:
+                # Update the wallet
+                wallet['gold'] -= gold_amount
+                wallet['rial'] += rial_amount
+
+                transaction = Transaction.objects.create(
+                    #user=request.user,
+                    transaction_type='sell_gold',
+                    seller='Goldis',
+                    rial_amount=rial_amount,
+                    gold_amount=gold_amount,
+                    price_per_gram=price_per_gram
+                )
+                
+                return redirect('sales:wallet')
+            else:
+                # Not enough gold, show an error
+                error_message = 'موجودی طلای شما کافی نیست.'
+                context = {
+                    'rial_amount': rial_amount,
+                    'gold_amount': gold_amount,
+                    'price_per_gram': price_per_gram,
+                    'error_message': error_message,
+                }
+                return render(request, 'sales/goldSellFactor.html', context)
         elif action == 'cancel':
             return redirect('home:home')  # Redirect to home page
     else:
@@ -146,8 +200,16 @@ def deposit(request):
     if request.method == 'POST':
         action = request.POST.get('action')
         if action == 'confirm':
-            # TODO: Implement payment processing later
-            pass  # Placeholder for payment processing
+           # Update the wallet
+            wallet['rial'] += float(rial_amount)
+            # Create a Transaction record
+            transaction = Transaction.objects.create(
+                #user=request.user,
+                transaction_type='deposit',
+                rial_amount=rial_amount,
+                #card_id=6037111100002222,
+            )
+            return redirect('sales:wallet')
         elif action == 'cancel':
             return redirect('home:home')  # Redirect to home page
 
@@ -163,8 +225,16 @@ def withdraw(request):
     if request.method == 'POST':
         action = request.POST.get('action')
         if action == 'confirm':
-            # TODO: Redirect to admin page later
-            pass  # Placeholder for admin redirection
+            # Update the wallet
+            wallet['rial'] -= float(rial_amount)
+            # Create a Transaction record
+            transaction = Transaction.objects.create(
+                #user=request.user,
+                transaction_type='withdrawal',
+                rial_amount=rial_amount,
+                #card_id=6037111100002222,
+            )
+            return redirect('sales:wallet')
         elif action == 'cancel':
             return redirect('home:home')  # Redirect to home page
 
@@ -174,3 +244,13 @@ def withdraw(request):
         'gold_amount': wallet['gold'],
     }
     return render(request, 'sales/withdraw.html', context)
+
+def transactions(request):
+    #.filter(user=request.user)
+    transactions_list = Transaction.objects.order_by('-date', '-time')
+    
+    context = {
+        'transactions': transactions_list,
+    }
+
+    return render(request, 'sales/transition.html', context)
