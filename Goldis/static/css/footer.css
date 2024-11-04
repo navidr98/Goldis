@@ -174,5 +174,26 @@ footer {
     .footer-distributed .footer-center i {
         margin-right: 0;
     }
+
+    .footer-distributed .footer-left{
+        visibility: hidden;
+    }
 }
 
+@media only screen and (max-width:768px){
+    .footer-distributed .footer-left{
+        display: none;
+    }
+    .footer-distributed{
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+    }
+    .footer-right img{
+        visibility: hidden;
+    }
+
+    .footer-right .footer-center{
+        flex: 1;
+    }
+}

@@ -170,3 +170,21 @@ body{
 .signup-link:hover {
     color: var(--white-color);
 }
+
+@media only screen and (max-width:768px){
+    .form-wrapper-bg {
+        visibility: hidden;
+    }
+    .form-wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0;
+        width: 40rem;
+    }
+
+    .container{
+        height: 58vh;
+        margin-bottom: 1rem;
+    }
+}

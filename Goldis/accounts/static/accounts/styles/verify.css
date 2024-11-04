@@ -141,3 +141,27 @@ html {
     border-radius: 15rem;
     transform: rotateZ(45deg);
 }
+
+.timer {
+    margin-top: 1rem;
+    font-size: 1.8rem;
+    color: var(--white-color);
+    font-weight: bold;
+}
+@media only screen and (max-width:768px){
+    .form-wrapper-bg-left , .form-wrapper-bg-right {
+        display: none;
+    }
+    .form-wrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0;
+        width: 40rem;
+    }
+
+    .container{
+        height: 58vh;
+        margin-bottom: 1rem;
+    }
+}

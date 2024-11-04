@@ -4,7 +4,9 @@
 
 {% load static %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'accounts/styles/header.css'%}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'home/styles/header.css' %}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 {% endblock %}
 
 
@@ -17,9 +19,9 @@
         <div class="card-bg-wrapper">
             <div class="card-bg"></div>
         </div>
-        <h1 class="card-heading">Goldis</h1>
+        <h1 class="card-heading">goldis</h1>
         <div class="card-img">
-            <img src="{% static 'accounts/img/photo_1_2024-10-17_00-06-25.jpg' %}" alt="logo-pic">
+            <img src="{% static 'accounts/img/photo_1_2024-10-17_00-06-25_prev_ui.png' %}" alt="logo-pic">
         </div>
         <div class="card-content">
             <h3 class="small-heading">گلدیس</h3>
@@ -32,5 +34,5 @@
 {% endblock %}
 
 {% block js %}
-    <!-- <script src="{% static 'accounts/js/account.js' %}"></script> -->
+   
 {% endblock %}

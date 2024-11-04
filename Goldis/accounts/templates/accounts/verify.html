@@ -24,6 +24,7 @@
                 </div>
                 <input class="form-btn" type="submit" value="ارسال">
             </form>
+            <div id="timer" class="timer">01:00</div>
         </div>
         <div class="form-wrapper-bg-left">
         </div>
@@ -31,7 +32,36 @@
 </div>
 {% endblock %}
 
+{% block js %}
+    <script>
+        
+        function startTimer(duration, display) {
+            let timer = duration, minutes, seconds;
+            const countdown = setInterval(() => {
+                minutes = Math.floor(timer / 60);
+                seconds = timer % 60;
 
+                
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(countdown);
+                    display.textContent = "اتمام وقت!";
+                }
+            }, 1000);
+        }
+
+        
+        window.onload = function () {
+            const display = document.querySelector('#timer');
+            const duration = 60; 
+            startTimer(duration, display);
+        };
+    </script>
+{% endblock %}
 
 
 

@@ -8,7 +8,7 @@ from .models import OtpCode, User
 from django.contrib import messages
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import update_session_auth_hash
+
 
 
 class UserRegisterView(View):
@@ -167,24 +167,16 @@ class UserLogoutView(LoginRequiredMixin, View):
         logout(request)
         messages.success(request, 'با موفقیت از حساب خود خارج شدید', 'success')
         return redirect('home:home')
+    
+
+class UserProfileView(View):
+
+    def get(self, request, user_id):
+        user = get_object_or_404(User, pk=user_id)
+        return render(request, 'accounts/profile.html', {'user':user})
 
 
-class UserProfileView(LoginRequiredMixin, View):
-
-    form_class = UserProfileForm
-    pass_form = UserChangePasswordForm
-
-
-    def setup(self, request, *args, **kwargs):
-        self.user_instance = get_object_or_404(User, pk=kwargs['user_id'])
-        return super().setup(request, *args, **kwargs)
-
-    def dispatch(self, request, *args, **kwargs):
-        user = self.user_instance
-        if not user.id == request.user.id:
-            return redirect('home:home')
-        return super().dispatch(request, *args, **kwargs)
-
+class UserBankInfoView(View):
 
     def get(self, request, user_id):
         user = self.user_instance

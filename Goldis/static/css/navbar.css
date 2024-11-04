@@ -23,10 +23,10 @@ html {
     font-size: 62.5%;
 }
 
-.container {
+/* .container {
     width: 100%;
     height: 100vh;
-}
+} */
 
 
 .navigation {
@@ -178,6 +178,10 @@ ul li:hover > ul, ul li ul:hover{
     opacity: 1;
 }
 
+.navigation .ul-links{
+    display: none;
+}
+
 @media only screen and (max-width:768px){
     .landing-left{
         visibility:hidden;
@@ -186,20 +190,74 @@ ul li:hover > ul, ul li ul:hover{
         visibility: hidden;
     }
 
-    .navigation ul, .user-pic{
+    .user-pic{
         visibility: hidden;
     }
-    .navigation .logo-pic{
+    .logo-pic{
         left: 20%;
         flex-basis: 1rem;
     }
 
-    .navigation .nav-icon{
+   
+
+    .navigation{
+        height: 10rem;
+        display: flex;
+    }
+
+    .nav-icon{
         display: inline;
         position: absolute;
         right: 10%;
         top: 25%;
         font-size: 3rem;
         color: var(--white-color);
+    }
+
+    .navigation .ul-icons{
+        display: none;
+    }
+
+    .navigation .ul-linkss{
+        display: none;
+    }
+
+    .navigation .ul-links{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        /* visibility: visible; */
+        color: var(--white-color);
+        background-color: var(--dark-gray-color);
+        position:absolute;
+        top: 1%;
+        right: 0;
+        height: 25rem;
+        padding: 3rem;
+        font-size: 3rem;
+        margin-right: 2rem;
+        margin-top: 2rem;
+        box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.5);
+        display: none; 
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+        
+    }
+
+    .ul-links.show{
+        display: flex; 
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .navigation .ul-links li{
+        padding-bottom: 1.5rem;
+    }
+
+    .navigation .ul-links a{
+        font-size: 2.5rem;
+        padding: 2rem;
+
+        
     }
 }

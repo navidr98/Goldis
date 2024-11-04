@@ -1,5 +1,16 @@
+<style>
+    .msg{
+        background-color: rgb(241, 238, 238);
+        color: rgb(228, 190, 138);
+        text-align: center;
+        font-size: 15px;
+        font-weight: bold;
+        font-family: 'shabnam';
+        padding-top: 10px;
+    }
+</style>
 
-<div align="center">
+<div class="msg">
     {% if messages %}
         {% for msg in messages %}
             <p class="alert alert-{{ msg.tags }} col-md-3">{{ msg }}</p>
