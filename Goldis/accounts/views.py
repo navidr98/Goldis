@@ -179,53 +179,40 @@ class UserProfileView(View):
 class UserBankInfoView(View):
 
     def get(self, request, user_id):
-        user = self.user_instance
-        form = self.form_class(instance=user)
-        pass_form = self.pass_form()
-        return render(request, 'accounts/profile.html', {'form':form, 'pass_form':pass_form})
+        user = get_object_or_404(User, pk=user_id)
+        return render(request, 'accounts/bank_info.html', {'user':user})
+    
+
+
+class UserProfileView(View):
+    def get(self, request, user_id):
+        user = get_object_or_404(User, pk=user_id)
+        profile_form = UserProfileForm(instance=user)
+        password_form = UserChangePasswordForm()  # Only if needed on this page
+
+        return render(request, 'accounts/profile.html', {
+            'user': user,
+            'form': profile_form,
+            'pass_form': password_form,
+        })
 
     def post(self, request, user_id):
-        user = self.user_instance
-        form = self.form_class(request.POST, instance=request.user)
-        pass_form = self.pass_form(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'اطلاعات حساب کاربری با موفقیت تغییر یافت')
-        elif pass_form.is_valid():
-            user = pass_form.save(commit=False)
-            user.set_password(pass_form.cleaned_data['password'])
+        user = get_object_or_404(User, pk=user_id)
+        profile_form = UserProfileForm(request.POST, instance=user)
+        password_form = UserChangePasswordForm(request.POST)
+
+        if profile_form.is_valid():
+            profile_form.save()
+            messages.success(request, 'پروفایل شما با موفقیت بروزرسانی شد', 'success')
+
+        if password_form.is_valid():
+            new_password = password_form.cleaned_data['password']
+            user.set_password(new_password)
             user.save()
-            update_session_auth_hash(request, user)
-            messages.success(request, 'رمز عبور حساب کاربری با موفقیت تغییر یافت')
-        else:
-            messages.error(request, 'اطلاعات به درستی وارد نشدند')
-        return redirect('accounts:user_profile', request.user.id)
+            messages.success(request, 'رمز عبور شما با موفقیت تغییر کرد', 'success')
 
-
-class UserBankInfoView(LoginRequiredMixin,View):
-
-    form_class = UserBankInfoForm
-
-    def setup(self, request, *args, **kwargs):
-        self.user_instance = get_object_or_404(User, pk=kwargs['user_id'])
-        return super().setup(request, *args, **kwargs)
-
-    def dispatch(self, request, *args, **kwargs):
-        user = self.user_instance
-        if not user.id == request.user.id:
-            return redirect('home:home')
-        return super().dispatch(request, *args, **kwargs)
-
-    def get(self, request,user_id):
-        user = self.user_instance
-        form = self.form_class(instance=request.user)
-        return render(request, 'accounts/bank_info.html', {'form': form})
-
-    def post(self, request,user_id):
-        form = self.form_class(request.POST, instance=request.user.bankinfo)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'اطلاعات حساب بانکی با موفقیت ثبت یافت')
-        else:
-            messages.error(request, 'اطلاعات به درستی وارد نشدند')
-        return redirect('accounts:user_bank_info', request.user.id)
+        return render(request, 'accounts/profile.html', {
+            'user': user,
+            'form': profile_form,
+            'pass_form': password_form,
+        })

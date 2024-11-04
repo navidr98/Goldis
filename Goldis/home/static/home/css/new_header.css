@@ -7,6 +7,10 @@
     font-family: 'shabnam';
 }
 
+html {
+    /* overflow: hidden; */
+}
+
 
 :root{
     --gray-color: rgb(160, 157, 157);

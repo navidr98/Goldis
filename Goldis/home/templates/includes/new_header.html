@@ -1,6 +1,6 @@
-{% extends 'base.html' %}
 
-{% block title %}header{% endblock %}
+
+
 
 {% load static %}
 {% block css %}
@@ -11,7 +11,6 @@
 
 
 
-{% block content %}
 <div class="container">
     <div class="bg bg-1"></div>
     <div class="bg bg-2"></div>
@@ -27,11 +26,11 @@
             <h3 class="small-heading">گلدیس</h3>
             <h1 class="main-heading"> سیستم پیشرفته خرید طلای فیزیکی </h1>
             <p>گلدیس با دید وسیع در رابطه با ارزش طلا و با هدف ارائه شفافیت در قیمت گذاری و امکان‌سازی خرید طلای آبشده برای همه شروع به فعالیت کرد.</p>
-            <button class="card-btn" type="button">ورود</button>
+            <button class="card-btn" type="button"><a href="{% url 'accounts:user_login' %}">ورود</a></button>
         </div>
     </div>
 </div>
-{% endblock %}
+
 
 {% block js %}
    

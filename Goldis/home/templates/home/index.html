@@ -9,7 +9,16 @@
 
 {% block content %}
 
-    {% include 'includes/old_header.html' %}
+    {% if request.user.is_authenticated %}
+        {% include 'includes/old_header.html' %}
+    {% else %}
+        {% include 'includes/new_header.html' %}
+
+    {% endif %}
+
+    
+
+    
 
 
 

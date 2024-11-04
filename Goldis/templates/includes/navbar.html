@@ -1,28 +1,28 @@
 {% load static %}
 {% block css %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 {% endblock %}
 
 
 <div class="navigation">
-    <ul>
+    <ul class="ul-linkss">
         <li><a href="{% url 'home:home' %}">صفحه اصلی</a></li>
         <li><a href="#">کیف پول</a></li>
         <li><a href="#">خدمات گلدیس</a></li>
         <li><a href="#">درباره ما</a></li>
     </ul>
     <span class="nav-icon"><i class="fa-solid fa-bars"></i></span>
-    <!-- <div class="links-res">
-        <ul>
+    <ul class="ul-links">
             <li><a href="#">صفحه اصلی</a></li>
             <li><a href="#">کیف پول</a></li>
             <li><a href="#">خدمات گلدیس</a></li>
             <li><a href="#">درباره ما</a></li>
         </ul>
-    </div> -->
+    
     <div class="user-pic">
-        <img src="../../static/img/—Pngtree—outline user icon_5045523_prev_ui.png" alt="user-pic">
+        <img src="{% static '/img/user-icon.png' %}" alt="user-pic">
         {% if request.user.is_authenticated %}
             <ul>
                 <li class="sub-item">
@@ -34,7 +34,7 @@
                     <a class="nav-link active" href="{% url 'accounts:user_bank_info' request.user.id %}">حساب بانکی</a>
                 </li>
                 <li class="sub-item">
-                    <i class="fa-solid fa-sign"></i>
+                    <i class="fa-solid fa-power-off"></i>
                     <a class="nav-link active" href="{% url 'accounts:logout' %}">خروج</a>
                 </li>
             </ul>
@@ -44,7 +44,7 @@
    
 
     <div class="logo-pic">
-        <img src="../../static/img/ImportedPhoto.751717765.598174.jpeg" alt="logo-pic">
+        <img src="{% static '/img/goldis-logo.jpeg' %}" alt="logo-pic">
     </div>
 </div>
 

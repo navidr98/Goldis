@@ -21,6 +21,7 @@
 
 html {
     font-size: 62.5%;
+    /* overflow: hidden; */
 }
 
 /* .container {
@@ -126,8 +127,9 @@ html {
 .user-pic li{
     list-style: none;
     position: relative;
-    padding: 0.6rem 0 0.5rem;
+    padding: 0.5rem 0 0.5 0.5rem;
     font-size: 1.6rem;
+    font-weight: bold;
     color: var(--white-color);
 }
 
@@ -197,12 +199,11 @@ ul li:hover > ul, ul li ul:hover{
         left: 20%;
         flex-basis: 1rem;
     }
-
-   
-
+    
     .navigation{
-        height: 10rem;
+        height: 15rem;
         display: flex;
+        padding: 4rem;
     }
 
     .nav-icon{
@@ -230,7 +231,7 @@ ul li:hover > ul, ul li ul:hover{
         color: var(--white-color);
         background-color: var(--dark-gray-color);
         position:absolute;
-        top: 1%;
+        top: 5%;
         right: 0;
         height: 25rem;
         padding: 3rem;
@@ -241,13 +242,18 @@ ul li:hover > ul, ul li ul:hover{
         display: none; 
         visibility: hidden;
         transition: all 0.3s ease-in-out;
-        
+        border-radius: 1rem;
     }
 
     .ul-links.show{
         display: flex; 
         visibility: visible;
+        justify-content: space-evenly;
         opacity: 1;
+        position: absolute;
+        top: 60%;
+        right: 0;
+        font-weight: bold;
     }
 
     .navigation .ul-links li{

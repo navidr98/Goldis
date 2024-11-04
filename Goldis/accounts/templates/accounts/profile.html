@@ -17,48 +17,48 @@
 
     <div class="container">
         <div class="circle-bg1"></div>
-        <div class="circle-bg2"></div>
-        <div class="circle-bg3"></div>
+        <!-- <div class="circle-bg2"></div>
+        <div class="circle-bg3"></div> -->
         <div class="form-wrapper">
             <h1>مشخصات من</h1>
             <form method="post" action="" novalidate>
                 {% csrf_token %}
                 {% for field in form %}
-                    <div>
+                    <div class="input-group">
                         {{ field.errors }}
                     </div>
                 {% endfor %}
-                <div>
+                <div class="input-group">
                     {{ form.phone_number }}
                 </div>
-                <div>
+                <div class="input-group">
                     {{ form.full_name }}
                 </div>
-                <input type="submit" value="ثبت">
+                <input class="form-btn" type="submit" value="ثبت">
             </form>
         </div>
     </div>
 
     <div class="container2">
         <div class="circle-bg4"></div>
-        <div class="circle-bg5"></div>
-        <div class="circle-bg6"></div>
+        <!-- <div class="circle-bg5"></div>
+        <div class="circle-bg6"></div> -->
         <div class="form-wrapper">
             <h1>تغییر رمز عبور</h1>
             <form method="post" action="" novalidate>
                 {% csrf_token %}
                 {% for field in form %}
-                    <div>
+                    <div >
                         {{ field.errors }}
                     </div>
                 {% endfor %}
-                <div>
+                <div class="input-group">
                     {{ pass_form.password }}
                 </div>
-                <div>
+                <div class="input-group">
                     {{ pass_form.confirm_password }}
                 </div>
-                <input type="submit" value="ثبت">
+                <input class="form-btn" type="submit" value="ثبت">
             </form>
         </div>
     </div>
