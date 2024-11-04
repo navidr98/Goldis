@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تاریخچه تراکنش</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'sales/styles/transition.css' %}">
+</head>
+<body>
+    <div class="container">
+        {% for transaction in transactions %}
+        {% if transaction.transaction_type == 'deposit' or transaction.transaction_type == 'withdrawal' %}
+        <form class="money">
+            <div class="title">
+                <div>
+                    <span>
+                        <img src="{% static 'sales/img/wallet-svgrepo-com.svg' %}" width="25px" alt="">
+                    </span>
+                    {% if transaction.transaction_type == 'withdrawal' %}
+                    <span class="title-name">
+                        برداشت از حساب
+                    </span>
+                    {% else %}
+                    <span class="title-name">
+                        شارژ حساب
+                    </span>
+                    {% endif %}
+                </div>
+                <div>
+                    ####
+                </div>
+            </div>
+            <div class="area money-amount">
+                <span>مبلغ</span>
+                <div>
+                    <span>{{transaction.rial_amount}}</span>
+                    <span>ریال</span>
+                </div>
+            </div>
+            <div class="area card-num">
+                <div>
+                    <span>انتقال</span>
+                    <span>####</span> <!----{{transaction.card_id}}-->
+                    <span>شماره کارت</span>
+                </div>
+                <div>################</div>
+            </div>
+            <div class="area day-time">
+                <span>تاریخ</span>
+                <span>{{transaction.date}}</span>
+            </div>
+            <div class="area h-time">
+                <span>ساعت</span>
+                <span>{{transaction.time}}</span>
+            </div>
+            <div class="area karmozd-goldis">
+                <span>کارمزد گلدیس</span>
+                <div>
+                    <span>0</span>
+                    <span>ریال</span>
+                </div>
+            </div>
+            <div class="area karmozd-bank">
+                <span>کارمزد بانک</span>
+                <div>
+                    <span>0</span>
+                    <span>ریال</span>
+                </div>
+            </div>
+            <div class="area transition-id">
+                <span>آیدی تراکنش</span>
+                <span>{{transaction.transaction_id}}</span>
+            </div>
+        </form>
+        {% elif transaction.transaction_type == 'buy_gold' or transaction.transaction_type == 'sell_gold' %}
+        <form class="gold">
+            <div class="title">
+                <div class="transition-level">
+                    <span>
+                        <img src="{% static 'sales/img/gold-bars-shiny-svgrepo-com.svg' %}" width="33px" alt="">
+                    </span>
+                    {% if transaction.transaction_type == 'buy_gold' %}
+                    <span class="title-name">
+                        خرید طلا
+                    </span>
+                    {% else %}
+                    <span class="title-name">
+                        فروش طلا
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="area purchaser-name">
+                <span>نام خریدار</span>
+                <span>{{ transaction.user.get_full_name }}</span>
+            </div>
+            <div class="area seller-name">
+                <span>نام فروشنده</span>
+                <span>{{transaction.seller}}</span>
+            </div>
+            <div class="area day-time">
+                <span>تاریخ</span>
+                <span>{{transaction.date}}</span>
+            </div>
+            <div class="area h-time">
+                <span>ساعت</span>
+                <span>{{transaction.time}}</span>
+            </div>
+            <div class="area money-amount">
+                <div>
+                    <span>مبلغ</span>
+                    {% if transaction.transaction_type == 'buy_gold' %}
+                    <span>پرداختی</span>
+                    {% else %}
+                    <span>برداشتی</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <span>{{transaction.rial_amount}}</span>
+                    <span>ریال</span>
+                </div>
+            </div>
+            <div class="area karmozd-goldis">
+                <span>کارمزد گلدیس</span>
+                <div>
+                    <span>0</span>
+                    <span>ریال</span>
+                </div>
+            </div>
+            <div class="area karmozd-bank">
+                <span>کارمزد بانک</span>
+                <div>
+                    <span>0</span>
+                    <span>ریال</span>
+                </div>
+            </div>
+            <div class="area gold-amount">
+                <div>
+                    <span>مقدار</span>
+                    {% if transaction.transaction_type == 'buy_gold' %}
+                    <span>خریداری</span>
+                    {% else %}
+                    <span>فروخته</span>
+                    {% endif %}
+                    <span>شده</span>
+                </div>
+                <div>
+                    <span>{{transaction.gold_amount}}</span>
+                    <span>گرم</span>
+                </div>
+            </div>
+            <div class="area gold-price">
+                <div>
+                    <span>قیمت طلا در لحظه</span>
+                    <span>{{transaction.price_per_gram}}</span>
+                </div>
+                <div>
+                    <span>{{transaction.rial_amount}}</span>
+                    <span>ریال</span>
+                </div>
+            </div>
+            <div class="area transition-id">
+                <span>آیدی تراکنش</span>
+                <span>{{transaction.transaction_id}}</span>
+            </div>
+        </form>
+        {% endif %}
+        {% endfor %}
+    </div>
+</body>
+</html>

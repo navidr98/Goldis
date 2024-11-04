@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کیف پول</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'sales/styles/checkWallet.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="box money-box">
+            <div class="matn">
+                <span class="title">
+                    کیف پول
+                </span>
+                <div class="explain">
+                    با وارد کردن میزان مبلغ مورد نظر میتوانید برداشت یا واریز وجه را انجام دهید .
+                </div>
+            </div>
+            <form class="left-side" method="post">
+                {% csrf_token %}
+                <span class="header">
+                    موجودی کیف پول
+                </span>
+                <div class="area money-balance">
+                    <span>موجودی فعلی شما</span>
+                    <span>{{ rial_amount }}</span>
+                </div>
+                <div class="area">
+                    <span>مبلغ :</span>
+                    <div>
+                        {{ form.rial_amount }}
+                        <span>ریال</span>
+                    </div>
+                    {% for error in form.rial_amount.errors %}
+                        <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div>
+                    <button type="submit" name="action" value="deposit" class="btn">
+                        واریز وجه
+                    </button>
+                    <button type="submit" name="action" value="withdraw" class="left-btn">
+                        برداشت وجه
+                    </button>
+                </div>
+                {% if form.non_field_errors %}
+                    <div class="error">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</body>
+</html>

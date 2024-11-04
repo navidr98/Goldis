@@ -39,7 +39,6 @@ class UserChangeForm(forms.ModelForm):
 
 # user register form shown in register page
 class UserRegistrationForm(forms.Form):
-
     phone_number = forms.CharField(min_length=11, max_length=11, error_messages = {
                 'required':"لطفا شماره تلفن خود را وارد کنید",
                 'min_length': "شماره تلفن باید ۱۱ رقم باشد",
@@ -161,7 +160,6 @@ class UserChangePasswordForm(forms.ModelForm):
         if p1 and p2 and p1 != p2:
             raise ValidationError('رمز عبور همخوانی ندارد')
 
-
 class UserBankInfoForm(forms.ModelForm):
     class Meta:
         model = UserBankInfo
@@ -185,17 +183,3 @@ class UserBankInfoForm(forms.ModelForm):
             'invalid':"شماره شبات را با فرمت صحیح وارد کنید"
         },
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

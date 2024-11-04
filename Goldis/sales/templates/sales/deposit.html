@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>واریز</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'sales/styles/moneyReciept.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div>
+            <img src="{% static 'sales/img/wallet-svgrepo-com.svg' %}" width="90px" alt="wallet">
+        </div>
+        <span class="title">واریز وجه</span>
+        <form class="bottom-side" method="post">
+            {% csrf_token %}
+            <div class="area">
+                <span class="field">موجودی فعلی کیف پول شما</span>
+                <div>
+                    <span class="num">
+                        {{current_rial}}
+                    </span>
+                    <span>ریال</span>
+                </div>
+            </div>
+            <div class="area">
+                <span class="field">مبلغ قابل پرداخت</span>
+                <div>
+                    <span class="num">
+                        {{rial_amount}}
+                    </span>
+                    <span>ریال</span>
+                </div>
+            </div>
+            <div class="area">
+                <span class="field">کارمزد بانک</span>
+                <div>
+                    <span class="num">
+                        0
+                    </span>
+                    <span>ریال</span>
+                </div>
+            </div>
+            <div>
+                <button class="right-btn" type="submit" name="action" value="confirm">
+                    تایید
+                </button>
+                <button class="left-btn" type="submit" name="action" value="cancel">
+                    انصراف
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
