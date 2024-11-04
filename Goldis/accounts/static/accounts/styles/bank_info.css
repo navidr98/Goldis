@@ -39,7 +39,7 @@ html {
     background-color: var(--orange-color);
     border-radius: 50%;
     position: absolute;
-    top: -177%;
+    top: -150%;
 }
 
 .circle-bg2{
@@ -104,4 +104,13 @@ html {
     border: none;
     margin-top: 2.5rem;
     box-shadow: 1rem 1rem 2rem rgba(0,0,0,0.5);
+}
+
+@media only screen and (max-width:768px){
+    .container{
+        height: 70vh;
+    }
+    .circle-bg1{
+        visibility: hidden;
+    }
 }

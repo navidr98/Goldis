@@ -164,7 +164,7 @@ footer {
     color: var(--white-color);
 }
 
-@media(max-width:880 px){
+@media(max-width:880px){
     .footer-distributed .footer-right, .footer-distributed .footer-center, 
     .footer-distributed .footer-left{
         display: block;
