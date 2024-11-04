@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'shabnam';
-    src: url(../fonts/Shabnam.ttf);
+    src: url(../typeface/shabnam);
 }
 
 * {
@@ -14,6 +14,10 @@
 
 html {
     font-size: 62.5%;
+}
+
+body{
+    background-color: var(--white-color);
 }
 
 :root{
@@ -152,7 +156,7 @@ html {
 
 .signup-link{
     position: absolute;
-    bottom: 8rem;
+    bottom: 2.3rem;
     font-size: 1.5rem;
     font-weight: lighter;
     color: var(--gray-color);

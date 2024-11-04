@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title%}رمز ورود{%endblock%}
+
+{% load static %}
+{% block css %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'accounts/styles/verify.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="form-wrapper">
+        <div class="form-wrapper-bg-right">
+        </div>
+        <div class="form-wrapper-mid">
+            <h1>رمز ورود</h1>
+            <form action="" method="post" novalidate>
+                {% csrf_token %}
+                <div class="form-input">
+                    {{ form.as_p }} 
+                    <i class="fa-solid fa-key"></i>
+                </div>
+                <input class="form-btn" type="submit" value="ارسال">
+            </form>
+        </div>
+        <div class="form-wrapper-bg-left">
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+

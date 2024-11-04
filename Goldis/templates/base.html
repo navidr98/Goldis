@@ -8,8 +8,6 @@
     </title>
 
     {% block css %} {% endblock %}
-
-
     {% block favicon %} {% endblock %}
 
 </head>
@@ -17,12 +15,13 @@
     
     
     {% include 'includes/navbar.html' %}
+
+    {% include 'includes/messages.html' %}
     
-    
+
     {% block content %} {% endblock %}
-    
-    
-    {% include 'includes/footer.html' %}
+
+
     
     {% block js %} {% endblock %}
 

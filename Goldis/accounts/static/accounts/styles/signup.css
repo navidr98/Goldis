@@ -16,6 +16,10 @@ html {
     font-size: 62.5%;
 }
 
+body{
+    background-color: var(--white-color);
+}
+
 :root{
     --gray-color: rgb(160, 157, 157);
     --orange-color: rgb(228, 190, 138);
@@ -165,5 +169,5 @@ html {
 
 .signup-link:hover {
     color: var(--white-color);
-}
 
+}

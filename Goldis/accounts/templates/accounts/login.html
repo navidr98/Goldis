@@ -4,8 +4,9 @@
 
 {% load static %}
 {% block css %}
-<link rel="stylesheet" href="{% static 'accounts/styles/signup.css'%}">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'accounts/styles/signin.css'%}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block favicon %}
@@ -22,10 +23,24 @@
                 <h1>ورود</h1>
                 <form action="" method="post" class="form-signin" novalidate>
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    {% for field in form %}
+                        <div style="color: rgb(241, 238, 238); font-size: 15px;
+                         list-style: none; font-family: 'shabnam'; padding-bottom: 5px; font-weight: bold;">
+                            {{ field.errors }}
+                        </div>
+                    {% endfor %}
+                    <div class="input-group">
+                        {{ form.phone_number }}
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div class="input-group">
+                        {{ form.password }}
+                        <i class="fa-solid fa-key"></i>
+                    </div>
                     <input id="btn" type="submit" value="ورود" class="form-btn"><br>
                 </form>
-                <a href="" class="signup-link">ثبت نام نکرده اید ؟</a>
+
+                <a href="{% url 'accounts:user_register' %}" class="signup-link">ثبت نام نکرده اید ؟</a>
             </div>
         </div>
     </div>

@@ -1,0 +1,59 @@
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+{% endblock %}
+
+
+<div class="navigation">
+    <ul>
+        <li><a href="{% url 'home:home' %}">صفحه اصلی</a></li>
+        <li><a href="#">کیف پول</a></li>
+        <li><a href="#">خدمات گلدیس</a></li>
+        <li><a href="#">درباره ما</a></li>
+    </ul>
+    <span class="nav-icon"><i class="fa-solid fa-bars"></i></span>
+    <div class="user-pic">
+        <img src="../../static/img/—Pngtree—outline user icon_5045523_prev_ui.png" alt="user-pic">
+        {% if request.user.is_authenticated %}
+            <ul>
+                <li class="sub-item">
+                    <i class="fa-solid fa-user"></i>
+                    <a class="nav-link active" href="{% url 'accounts:user_profile' request.user.id %}">حساب کاربری</a>
+                </li>
+                <li class="sub-item">
+                    <i class="fa-solid fa-wallet"></i>
+                    <a class="nav-link active" href="{% url 'accounts:user_bank_info' request.user.id %}">حساب بانکی</a>
+                </li>
+                <li class="sub-item">
+                    <i class="fa-solid fa-sign"></i>
+                    <a class="nav-link active" href="{% url 'accounts:logout' %}">خروج</a>
+                </li>
+            </ul>
+        {% endif %}
+    </div>
+
+   
+
+    <div class="logo-pic">
+        <img src="../../static/img/ImportedPhoto.751717765.598174.jpeg" alt="logo-pic">
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const userPic = document.querySelector('.user-pic img');
+    const userMenu = document.querySelector('.user-pic ul');
+
+        userPic.addEventListener('click', () => {
+            userMenu.classList.toggle('show');
+        });
+
+        
+        document.addEventListener('click', (e) => {
+            if (!userPic.contains(e.target) && !userMenu.contains(e.target)) {
+                userMenu.classList.remove('show');
+            }
+        });
+    });
+
+</script>
