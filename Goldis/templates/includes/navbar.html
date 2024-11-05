@@ -21,7 +21,10 @@
         <li><a href="{% url 'home:services' %}">خدمات</a></li>
         <li><a href="{% url 'home:rules' %}">قوانین</a></li>
         <li><a href="{% url 'home:about' %}">درباره ما</a></li>
-    </ul>
+        {% if request.user.is_authenticated %}
+            <li><a href="{% url 'accounts:user_profile' request.user.id %}">حساب کاربری</a></li>
+        {% endif %}
+        </ul>
     
     <div class="user-pic">
         <img src="{% static '/img/user-icon.png' %}" alt="user-pic">

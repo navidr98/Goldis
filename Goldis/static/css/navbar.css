@@ -57,7 +57,7 @@ html {
 
 .navigation a {
     margin-left: 3rem;
-    font-size: 1.9rem;
+    font-size: 1.6rem;
     background: linear-gradient(to right , var(--orange-color) , var(--gray-color) 70%);
     /* background: url(../ImportedPhoto.751287683.432977.jpeg); */
     -webkit-background-clip: text;
@@ -254,6 +254,7 @@ ul li:hover > ul, ul li ul:hover{
         top: 60%;
         right: 0;
         font-weight: bold;
+        height: 40rem;
     }
 
     .navigation .ul-links li{
