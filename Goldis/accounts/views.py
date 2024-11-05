@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from .forms import UserRegistrationForm, VerifyCodeForm, UserLoginForm, UserProfileForm, UserBankInfoForm
+from .forms import UserRegistrationForm, VerifyCodeForm, UserLoginForm, UserProfileForm
 from .forms import UserChangePasswordForm, UserBankInfoForm
 import random
 from utils import send_otp_code

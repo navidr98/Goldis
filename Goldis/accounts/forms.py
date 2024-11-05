@@ -136,7 +136,7 @@ class UserChangePasswordForm(forms.ModelForm):
         model = User
         fields = ('password',)
         # widgets = {
-        #     'password': forms.CharField(attrs={'placeholder': 'شماره تلفن'}),
+        #     'password': forms.PasswordInput(attrs={'placeholder': 'رمز عبور'})
         # }
         labels = {
             'password': '',
