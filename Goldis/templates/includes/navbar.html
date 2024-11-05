@@ -9,7 +9,20 @@
 <div class="navigation">
     <ul class="ul-linkss">
         <li><a href="{% url 'home:home' %}">صفحه اصلی</a></li>
-        <li><a href="#">کیف پول</a></li>
+        {% if current_page == 'home' %}
+            <li><a href="{% url 'sales:wallet' %}">کیف پول</a></li>
+        {% elif current_page == 'wallet' %}
+            <li><a href="{% url 'sales:buy' %}">خرید</a></li>
+            <li><a href="{% url 'sales:sell' %}">فروش</a></li>
+            <li><a href="{% url 'sales:transactions' %}">تراکنش ها</a></li>
+        {% elif current_page == 'buy' %}
+            <li><a href="{% url 'sales:sell' %}">فروش</a></li>
+            <li><a href="{% url 'sales:wallet' %}">کیف پول</a></li>
+            <li><a href="{% url 'sales:transactions' %}">تراکنش ها</a></li>
+        {% elif current_page == 'sell' %}
+            <li><a href="{% url 'sales:buy' %}">خرید</a></li>
+            <li><a href="{% url 'sales:wallet' %}">کیف پول</a></li>
+        {% endif %}
         <li><a href="{% url 'home:services' %}">خدمات</a></li>
         <li><a href="{% url 'home:rules' %}">قوانین</a></li>
         <li><a href="{% url 'home:about' %}">درباره ما</a></li>
@@ -17,7 +30,20 @@
     <span class="nav-icon"><i class="fa-solid fa-bars"></i></span>
     <ul class="ul-links">
         <li><a href="{% url 'home:home' %}">صفحه اصلی</a></li>
-        <li><a href="#">کیف پول</a></li>
+        {% if current_page == 'home' %}
+            <li><a href="{% url 'sales:wallet' %}">کیف پول</a></li>
+        {% elif current_page == 'wallet' %}
+            <li><a href="{% url 'sales:buy' %}">خرید</a></li>
+            <li><a href="{% url 'sales:sell' %}">فروش</a></li>
+            <li><a href="{% url 'sales:transactions' %}">تراکنشها</a></li>
+        {% elif current_page == 'buy' %}
+            <li><a href="{% url 'sales:sell' %}">فروش</a></li>
+            <li><a href="{% url 'sales:wallet' %}">کیف پول</a></li>
+            <li><a href="{% url 'sales:transactions' %}">تراکنشها</a></li>
+        {% elif current_page == 'sell' %}
+            <li><a href="{% url 'sales:buy' %}">خرید</a></li>
+            <li><a href="{% url 'sales:wallet' %}">کیف پول</a></li>
+        {% endif %}
         <li><a href="{% url 'home:services' %}">خدمات</a></li>
         <li><a href="{% url 'home:rules' %}">قوانین</a></li>
         <li><a href="{% url 'home:about' %}">درباره ما</a></li>

@@ -47,16 +47,16 @@
             <h1>تغییر رمز عبور</h1>
             <form method="post" action="" novalidate>
                 {% csrf_token %}
-                {% for field in form %}
+                {% for field in password_form %}
                     <div >
                         {{ field.errors }}
                     </div>
                 {% endfor %}
                 <div class="input-group">
-                    {{ pass_form.password }}
+                    {{ password_form.password }}
                 </div>
                 <div class="input-group">
-                    {{ pass_form.confirm_password }}
+                    {{ password_form.confirm_password }}
                 </div>
                 <input class="form-btn" type="submit" value="ثبت">
             </form>

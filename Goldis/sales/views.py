@@ -44,7 +44,13 @@ def buy(request):
     else:
         form = SaleForm()
 
-    return render(request, 'sales/buyingPage.html', {'form': form, 'wallet': wallet, 'price_per_gram': price_per_gram})
+    context ={
+        'form': form, 
+        'wallet': wallet, 
+        'price_per_gram': price_per_gram,
+        'current_page' : 'buy' ,
+        }
+    return render(request, 'sales/buyingPage.html',context )
 
 def sell(request):
     price_per_gram = 3800000  # Static price per gram in rials
@@ -77,8 +83,13 @@ def sell(request):
                     form.add_error('rial_amount', 'Not enough gold in the wallet.')
     else:
         form = SaleForm()
-
-    return render(request, 'sales/sellingPage.html', {'form': form, 'wallet': wallet, 'price_per_gram': price_per_gram})
+    context ={
+        'form': form, 
+        'wallet': wallet, 
+        'price_per_gram': price_per_gram,
+        'current_page' : 'sell' ,
+    }
+    return render(request, 'sales/sellingPage.html', context)
 
 def buyfactor(request):
     if request.method == 'POST':
@@ -192,6 +203,7 @@ def wallet_view(request):
         'form': form,
         'rial_amount': wallet['rial'],
         'gold_amount': wallet['gold'],
+        'current_page' : 'wallet',
     }
     return render(request, 'sales/wallet.html', context)
 

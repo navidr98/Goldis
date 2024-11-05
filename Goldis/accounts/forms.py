@@ -135,9 +135,9 @@ class UserChangePasswordForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('password',)
-        # widgets = {
-        #     'password': forms.PasswordInput(attrs={'placeholder': 'رمز عبور'})
-        # }
+        widgets = {
+            'password': forms.PasswordInput(attrs={'placeholder': 'رمز عبور'})
+        }
         labels = {
             'password': '',
         }

@@ -3,7 +3,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def home(request):
-    return render(request, 'home/index.html')
+    context = {
+        'current_page' : 'home',
+    }
+    return render(request, 'home/index.html', context)
 
 def services(request):
     return render(request, 'home/khadamat.html')
@@ -13,6 +16,7 @@ def about(request):
 
 def rules(request):
     return render(request, 'home/ghavanin.html')
+
 
 
 
