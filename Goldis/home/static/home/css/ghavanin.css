@@ -1,0 +1,130 @@
+@font-face {
+    font-family: 'shabnam' ;
+    src: url(../fonts/Shabnam-FD.ttf);
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: shabnam;
+}
+
+:root{
+    --gray: #a8aaae;
+    --gold: #e4be8a:
+}
+
+.container{
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titr{
+    font-size: 1.5rem;
+    margin-inline: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgb(202, 200, 200);
+    padding: 1.3rem;
+    width: 90%;
+    text-align: center;
+}
+
+.explain{
+    margin: 2rem;
+    text-align: justify;
+    letter-spacing: 0.2px;
+    line-height: 1.6rem;
+    font-size: 18px;
+}
+
+.ghavanin{
+    margin-top: 2rem;
+    margin-bottom: 7rem;
+    margin-inline: 7rem;
+    display: flex;
+    gap: 1rem;
+}
+.ghavanin .shape{
+    -webkit-transition: ease-in 0.5s;
+    -moz-transition: ease-in 0.5s;
+    -ms-transition: ease-in 0.5s;
+    -o-transition: ease-in 0.5s;
+    transition: ease-in 0.5s;
+    cursor: pointer;
+}
+.ghavanin .shape:hover{
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+    z-index: 1;
+}
+.ghavanin .poly:hover{
+    -webkit-transform: translateY(50%) scale(1.1);
+    -moz-transform: translateY(50%) scale(1.1);
+    -ms-transform: translateY(50%) scale(1.1);
+    -o-transform: translateY(50%) scale(1.1);
+    transform: translateY(50%) scale(1.1);
+}
+.shape{
+    width: 200px;
+    height: 200px;
+    background-color: var(--gray);
+    margin: -20px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+    border-radius: 100%;
+}
+.poly{
+    -webkit-transform: translateY(50%);
+    -moz-transform: translateY(50%);
+    -ms-transform: translateY(50%);
+    -o-transform: translateY(50%);
+    transform: translateY(50%);
+    background-color: #f6c683;
+}
+.tozihat{
+    list-style-position: inside;
+    padding-right: 10px;
+    margin: 1rem;
+    background-color:rgba(248, 246, 244, 0.886) ;
+    padding: 0.5rem;
+    line-height: 2rem;
+    border-radius: 14px;
+}
+li{
+    list-style-type: square;
+}
+
+@media (max-width:1040px) {
+    .ghavanin{
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+    .poly{
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        -ms-transform: translateY(0);
+        -o-transform: translateY(0);
+        transform: translateY(0);
+}
+    .ghavanin .poly:hover{
+        -webkit-transform: translateY(0) scale(1.1);
+        -moz-transform: translateY(0) scale(1.1);
+        -ms-transform: translateY(0) scale(1.1);
+        -o-transform: translateY(0) scale(1.1);
+        transform: translateY(0) scale(1.1);
+    }
+}

@@ -47,8 +47,8 @@ html {
 }
 
 .card {
-    width: 50rem;
-    height: 30rem;
+    width: 50%;
+    height: 50%;
     background-color: var(--gray-color);
     opacity: 0.8;
     position: absolute;
